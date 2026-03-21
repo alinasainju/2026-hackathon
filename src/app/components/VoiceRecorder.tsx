@@ -78,7 +78,10 @@ export default function VoiceRecorder({ onLogSaved }: VoiceRecorderProps) {
       const res = await fetch("/api/logs", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ transcript }),
+        body: JSON.stringify({
+          transcript,
+          rawTranscript: transcript,
+        }),
       });
       if (!res.ok) throw new Error("Failed to process log");
       const log: LogEntry = await res.json();

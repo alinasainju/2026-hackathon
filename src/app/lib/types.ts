@@ -9,12 +9,19 @@ export interface StarStory {
 export interface LogEntry {
   id: string;
   date: string;
+  title?: string;
+  time?: string;
   transcript: string;
+  rawTranscript?: string;
   task: string;
   skills: string[];
   impact: string;
   resumeBullet: string;
   starStory: StarStory | null;
+  folder?: string;
+  tag?: string;
+  dot?: string;
+  source?: "voice" | "text";
 }
 
 export interface WeeklySummary {
