@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import Nav from "@/components/Nav";
 import FolderSidebar from "@/components/FolderSidebar";
 import LogList from "@/components/LogList";
@@ -16,6 +17,7 @@ const colorOptions = [
 ];
 
 export default function DashboardPage() {
+  const router = useRouter();
   const { allLogs, folders, updateLog, deleteLog, addFolder } = useLogs();
   const [folderCounts, setFolderCounts] = useState<Record<string, number>>({});
   const [draggedLog, setDraggedLog] = useState<LogItem | null>(null);
@@ -171,19 +173,13 @@ export default function DashboardPage() {
           folders={folders}
           counts={folderCounts}
           onDrop={handleFolderDrop}
+          onSelect={(folder) => router.push(`/tasks?folder=${folder.key}`)}
           onNewFolder={() => setNewFolderOpen(true)}
         />
         <div className="main-card">
           <div className="left-panel">
-            <h2 className="panel-title">Today's Log</h2>
-            <div className="panel-date">
-              {new Date().toLocaleDateString("en-US", {
-                weekday: "long",
-                month: "long",
-                day: "numeric",
-                year: "numeric",
-              })}
-            </div>
+            <h2 className="panel-title">Your Logs</h2>
+            <div className="panel-date">Each entry keeps its own saved date.</div>
             <LogList
               logs={allLogs}
               folderNames={folderNameMap}

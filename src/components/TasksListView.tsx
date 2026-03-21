@@ -79,7 +79,6 @@ export function TasksListView({ logs, folders, activeFolder }: Props) {
 
                   <div className={`log-row-expand ${isOpen ? "show" : ""}`}>
                     <div className="expand-full">
-                      <div className="expand-ai-badge">✦ AI structured</div>
                       <div className="expand-section">
                         <div className="expand-section-label">What you did / learned</div>
                         <div className="expand-section-text italic">{log.task}</div>

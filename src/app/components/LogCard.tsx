@@ -38,7 +38,7 @@ export default function LogCard({ log }: LogCardProps) {
         {/* Transcript */}
         <div className="flex gap-2 items-start">
           <Mic className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
-          <p className="text-sm text-slate-500 italic">"{log.transcript}"</p>
+          <p className="text-sm text-slate-500 italic">"{log.rawTranscript ?? log.transcript}"</p>
         </div>
 
         <Separator />

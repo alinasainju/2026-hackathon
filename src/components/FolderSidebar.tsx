@@ -6,10 +6,11 @@ interface Props {
   folders: FolderDef[];
   counts: Record<string, number>;
   onDrop?: (folder: FolderDef) => void;
+  onSelect?: (folder: FolderDef) => void;
   onNewFolder?: () => void;
 }
 
-export function FolderSidebar({ folders, counts, onDrop, onNewFolder }: Props) {
+export function FolderSidebar({ folders, counts, onDrop, onSelect, onNewFolder }: Props) {
   const handleDrop = (e: React.DragEvent<HTMLDivElement>, folder: FolderDef) => {
     e.preventDefault();
     onDrop?.(folder);
@@ -34,6 +35,7 @@ export function FolderSidebar({ folders, counts, onDrop, onNewFolder }: Props) {
           }}
           onDragLeave={(e) => e.currentTarget.classList.remove("drag-over")}
           onDrop={(e) => handleDrop(e, f)}
+          onClick={() => onSelect?.(f)}
         >
           <div className="folder-icon">{f.icon}</div>
           <div className="folder-name">{f.name}</div>

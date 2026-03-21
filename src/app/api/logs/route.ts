@@ -69,7 +69,9 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Transcript is required" }, { status: 400 });
     }
 
-    const extracted = client ? await extractWithClaude(transcript) : extractFallback(transcript);
+    const extracted = client
+      ? await extractWithClaude(transcript, source === "text" ? "text" : "voice")
+      : extractFallback(transcript);
     return NextResponse.json(extracted);
   } catch (error) {
     console.error("Error processing log:", error);
@@ -77,7 +79,7 @@ export async function POST(req: NextRequest) {
   }
 }
 
-async function extractWithClaude(transcript: string) {
+async function extractWithClaude(transcript: string, source: "voice" | "text") {
   if (!client) return extractFallback(transcript);
 
   const message = await client.messages.create({
@@ -86,7 +88,7 @@ async function extractWithClaude(transcript: string) {
     messages: [
       {
         role: "user",
-        content: extractionPrompt(transcript),
+        content: extractionPrompt(transcript, source),
       },
     ],
   });
@@ -97,7 +99,7 @@ async function extractWithClaude(transcript: string) {
 
 function extractFallback(transcript: string) {
   const title = keywordTitle(transcript);
-  const task = transcript.length > 140 ? `${transcript.slice(0, 137).trim()}...` : transcript.trim();
+  const task = summarizeTask(transcript, title);
   const skills = inferSkills(transcript);
   const impact = inferImpact(transcript);
   const story = inferStarStory(transcript);
@@ -147,7 +149,17 @@ function inferSkills(transcript: string) {
 
 function inferImpact(transcript: string) {
   const sentences = transcript.split(/[.!?]/).map((part) => part.trim()).filter(Boolean);
-  return sentences.at(-1) || "Captured a useful work log entry.";
+  const closing = sentences.at(-1) || "";
+
+  if (closing.length >= 20) {
+    return closing[0].toUpperCase() + closing.slice(1);
+  }
+
+  if (/approved|fixed|reduced|improved|sped up|resolved|completed|launched|shipped|identified/i.test(transcript)) {
+    return "Improved the quality or clarity of the work and captured a concrete outcome.";
+  }
+
+  return "Clarified the work completed and captured a usable takeaway for future resume and interview use.";
 }
 
 function inferStarStory(transcript: string): StarStory | null {
@@ -163,4 +175,24 @@ function inferStarStory(transcript: string): StarStory | null {
 
 function buildResumeBullet(title: string, impact: string) {
   return `Documented ${title.toLowerCase()} and captured impact: ${impact}`;
+}
+
+function summarizeTask(transcript: string, title: string) {
+  const cleaned = transcript
+    .replace(/\s+/g, " ")
+    .replace(/^(so|today|basically|actually|like)\s+/i, "")
+    .trim();
+
+  const firstSentence = cleaned.split(/[.!?]/).map((part) => part.trim()).find(Boolean) || cleaned;
+  const normalized = firstSentence.charAt(0).toLowerCase() + firstSentence.slice(1);
+
+  if (/learned|understood|studied|reviewed|practiced|explored/i.test(cleaned)) {
+    return `Learned and documented ${normalized}`.replace(/\s+/g, " ");
+  }
+
+  if (/worked on|built|created|implemented|designed|debugged|fixed|wrote|reviewed/i.test(cleaned)) {
+    return `Worked on ${normalized}`.replace(/\s+/g, " ");
+  }
+
+  return `Captured work related to ${title.toLowerCase()}.`;
 }

@@ -45,8 +45,8 @@ export interface LogsContextValue {
 const LogsContext = createContext<LogsContextValue | null>(null);
 
 const initialFolders: FolderDef[] = [
-  { key: "classes", name: "Classes", icon: "📚", tag: "tag-classes", dot: "dot-classes", grad: "linear-gradient(135deg,#f5d5b8,#edc49a)" },
-  { key: "internship", name: "Internship Learnings", icon: "💼", tag: "tag-internship", dot: "dot-internship", grad: "linear-gradient(135deg,#c2dff5,#a8cfe8)" },
+  { key: "classes", name: "Class", icon: "📚", tag: "tag-classes", dot: "dot-classes", grad: "linear-gradient(135deg,#f5d5b8,#edc49a)" },
+  { key: "internship", name: "Internship", icon: "💼", tag: "tag-internship", dot: "dot-internship", grad: "linear-gradient(135deg,#c2dff5,#a8cfe8)" },
   { key: "personal", name: "Personal Projects", icon: "🌱", tag: "tag-personal", dot: "dot-personal", grad: "linear-gradient(135deg,#c2e8cc,#a6d8b4)" },
 ];
 

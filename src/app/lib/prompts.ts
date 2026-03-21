@@ -1,6 +1,6 @@
 
-export const extractionPrompt = (transcript: string) => `
-You are an expert career coach. A student has just logged their work day via voice.
+export const extractionPrompt = (transcript: string, source: "voice" | "text") => `
+You are an expert career coach. A student has just logged their work day via ${source === "voice" ? "voice recording" : "typed text"}.
 Analyze the transcript and extract structured career data.
 
 Also check if the transcript contains a STAR story (Situation, Task, Action, Result).

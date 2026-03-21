@@ -8,12 +8,13 @@ interface Props {
   weekLabel: string;
   dateRange: string;
   logs: LogItem[];
+  showBullets: boolean;
   hasStar: boolean;
   showStar: boolean;
   onToggleStar: (weekKey: string) => void;
 }
 
-export function WeekCard({ weekKey, weekLabel, dateRange, logs, hasStar, showStar, onToggleStar }: Props) {
+export function WeekCard({ weekKey, weekLabel, dateRange, logs, showBullets, hasStar, showStar, onToggleStar }: Props) {
   const router = useRouter();
   const skills = aggregateSkills(logs);
   const bullets = generateBullets(logs);
@@ -43,15 +44,17 @@ export function WeekCard({ weekKey, weekLabel, dateRange, logs, hasStar, showSta
             <div className="section-label">Weekly Summary</div>
             <div className="summary-text">{summary}</div>
           </div>
-          <div className="bullets-section">
-            <div className="section-label">Resume Bullets</div>
-            {bullets.map((b, i) => (
-              <div key={i} className="bullet-item">
-                <div className="bullet-dot" />
-                <div>{b}</div>
-              </div>
-            ))}
-          </div>
+          {showBullets && (
+            <div className="bullets-section">
+              <div className="section-label">Resume Bullets</div>
+              {bullets.map((b, i) => (
+                <div key={i} className="bullet-item">
+                  <div className="bullet-dot" />
+                  <div>{b}</div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {showStar ? buildStarPanel(logs) : buildSkillsPanel(skills)}
