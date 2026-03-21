@@ -15,6 +15,7 @@ interface Props {
 
 export function LogList({ logs, folderNames, onDragStart, onDragEnd, onEdit, onMove, onDelete }: Props) {
   const [activeMenuId, setActiveMenuId] = useState<string | null>(null);
+  const orderedLogs = [...logs].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   useEffect(() => {
     const onDocClick = () => setActiveMenuId(null);
@@ -24,7 +25,7 @@ export function LogList({ logs, folderNames, onDragStart, onDragEnd, onEdit, onM
 
   return (
     <div className="log-list">
-      {logs.map((log) => (
+      {orderedLogs.map((log) => (
         <div
           key={log.id}
           className="log-item"
@@ -38,7 +39,10 @@ export function LogList({ logs, folderNames, onDragStart, onDragEnd, onEdit, onM
             <span className="drag-handle">⠿</span>
             <span className="log-item-title">{log.title}</span>
           </div>
-          <div className="log-item-time">{log.time}</div>
+          <div className="log-item-time">
+            {formatLogDate(log.date)}
+            {log.time ? ` • ${log.time}` : ""}
+          </div>
           <button
             className="three-dot-btn"
             onClick={(e) => {
@@ -85,9 +89,19 @@ export function LogList({ logs, folderNames, onDragStart, onDragEnd, onEdit, onM
           {log.folder && <span className={`log-item-tag ${log.tag}`}>{folderNames[log.folder] ?? log.folder}</span>}
         </div>
       ))}
-      {logs.length === 0 && <div className="tasks-empty">No logs yet.</div>}
+      {orderedLogs.length === 0 && <div className="tasks-empty">No logs yet.</div>}
     </div>
   );
 }
 
 export default LogList;
+
+function formatLogDate(rawDate: string) {
+  const date = new Date(rawDate);
+  if (Number.isNaN(date.getTime())) return rawDate;
+  return date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+}

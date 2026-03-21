@@ -178,15 +178,8 @@ export default function DashboardPage() {
         />
         <div className="main-card">
           <div className="left-panel">
-            <h2 className="panel-title">Today's Log</h2>
-            <div className="panel-date">
-              {new Date().toLocaleDateString("en-US", {
-                weekday: "long",
-                month: "long",
-                day: "numeric",
-                year: "numeric",
-              })}
-            </div>
+            <h2 className="panel-title">Your Logs</h2>
+            <div className="panel-date">Each entry keeps its own saved date.</div>
             <LogList
               logs={allLogs}
               folderNames={folderNameMap}

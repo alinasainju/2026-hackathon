@@ -69,7 +69,9 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Transcript is required" }, { status: 400 });
     }
 
-    const extracted = client ? await extractWithClaude(transcript) : extractFallback(transcript);
+    const extracted = client
+      ? await extractWithClaude(transcript, source === "text" ? "text" : "voice")
+      : extractFallback(transcript);
     return NextResponse.json(extracted);
   } catch (error) {
     console.error("Error processing log:", error);
@@ -77,7 +79,7 @@ export async function POST(req: NextRequest) {
   }
 }
 
-async function extractWithClaude(transcript: string) {
+async function extractWithClaude(transcript: string, source: "voice" | "text") {
   if (!client) return extractFallback(transcript);
 
   const message = await client.messages.create({
@@ -86,7 +88,7 @@ async function extractWithClaude(transcript: string) {
     messages: [
       {
         role: "user",
-        content: extractionPrompt(transcript),
+        content: extractionPrompt(transcript, source),
       },
     ],
   });
