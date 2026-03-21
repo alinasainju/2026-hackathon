@@ -5,6 +5,8 @@ import Nav from "@/components/Nav";
 import CalendarGrid from "@/components/CalendarGrid";
 import CalendarRow from "@/components/CalendarRow";
 import { useLogs } from "@/context/LogsContext";
+import MicrophoneIcon from "@/components/MicrophoneIcon";
+import PencilIcon from "@/components/PencilIcon";
 
 export default function ProfilePage() {
   const { allLogs } = useLogs();
@@ -98,7 +100,7 @@ export default function ProfilePage() {
                 )}
                 {dayLogs.map((log) => (
                   <div key={log.id} className="cal-log-entry">
-                    <div className={`cal-log-icon ${log.source}`}>{log.source === "voice" ? "🎙" : "✏️"}</div>
+                    <div className={`cal-log-icon ${log.source}`}>{log.source === "voice" ? <MicrophoneIcon size={12} color="currentColor" /> : <PencilIcon size={12} color="currentColor" />}</div>
                     <div className="cal-log-title">{log.title}</div>
                     {log.folder && <span className={`cal-log-folder ${log.tag}`}>{log.folder}</span>}
                   </div>

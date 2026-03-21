@@ -2,13 +2,16 @@
 
 import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { StarStory } from "@/app/lib/types";
+import BookOpenIcon from "@/components/BookOpenIcon";
+import DatabaseIcon from "@/components/DatabaseIcon";
+import BulbIcon from "@/components/BulbIcon";
 
 export type SourceKind = "voice" | "text";
 
 export interface FolderDef {
   key: string;
   name: string;
-  icon: string;
+  icon: React.ReactNode;
   tag: string;
   dot: string;
   grad: string;
@@ -45,9 +48,9 @@ export interface LogsContextValue {
 const LogsContext = createContext<LogsContextValue | null>(null);
 
 const initialFolders: FolderDef[] = [
-  { key: "classes", name: "Class", icon: "📚", tag: "tag-classes", dot: "dot-classes", grad: "linear-gradient(135deg,#f5d5b8,#edc49a)" },
-  { key: "internship", name: "Internship", icon: "💼", tag: "tag-internship", dot: "dot-internship", grad: "linear-gradient(135deg,#c2dff5,#a8cfe8)" },
-  { key: "personal", name: "Personal Projects", icon: "🌱", tag: "tag-personal", dot: "dot-personal", grad: "linear-gradient(135deg,#c2e8cc,#a6d8b4)" },
+  { key: "classes", name: "Class", icon: <BookOpenIcon size={20} color="#2c2c2c" />, tag: "tag-classes", dot: "dot-classes", grad: "linear-gradient(135deg,#f5d5b8,#edc49a)" },
+  { key: "internship", name: "Internship", icon: <DatabaseIcon size={20} color="#2c2c2c" />, tag: "tag-internship", dot: "dot-internship", grad: "linear-gradient(135deg,#c2dff5,#a8cfe8)" },
+  { key: "personal", name: "Personal Projects", icon: <BulbIcon size={20} color="#2c2c2c" />, tag: "tag-personal", dot: "dot-personal", grad: "linear-gradient(135deg,#c2e8cc,#a6d8b4)" },
 ];
 
 const today = new Date();
