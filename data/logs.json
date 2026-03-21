@@ -1,4 +1,21 @@
 [
-
-  
+  {
+    "id": "c7c182ce-c612-4221-9b8e-f20af9c89d7b",
+    "date": "2026-03-21",
+    "title": "New Log",
+    "time": "01:55 PM - 01:55 PM",
+    "transcript": "hi",
+    "rawTranscript": "hi",
+    "task": "Captured work related to new log.",
+    "skills": [
+      "Problem Solving"
+    ],
+    "impact": "Clarified the work completed and captured a usable takeaway for future resume and interview use.",
+    "resumeBullet": "Documented new log and captured impact: Clarified the work completed and captured a usable takeaway for future resume and interview use.",
+    "starStory": null,
+    "folder": "",
+    "tag": "",
+    "dot": "",
+    "source": "text"
+  }
 ]
