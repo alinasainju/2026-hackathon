@@ -1,3 +1,21 @@
 [
-
+  {
+    "id": "fa96bf00-564d-4ca0-a6a6-76950e685972",
+    "date": "2026-03-21",
+    "title": "New Log",
+    "time": "01:08 PM - 01:08 PM",
+    "transcript": "hi",
+    "rawTranscript": "hi",
+    "task": "hi",
+    "skills": [
+      "Problem Solving"
+    ],
+    "impact": "hi",
+    "resumeBullet": "Documented new log and captured impact: hi",
+    "starStory": null,
+    "folder": "",
+    "tag": "",
+    "dot": "",
+    "source": "text"
+  }
 ]

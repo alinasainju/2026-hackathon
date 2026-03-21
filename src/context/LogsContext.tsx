@@ -1,6 +1,7 @@
 "use client";
 
-import React, { createContext, useContext, useMemo, useState } from "react";
+import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { StarStory } from "@/app/lib/types";
 
 export type SourceKind = "voice" | "text";
 
@@ -19,9 +20,12 @@ export interface LogItem {
   time: string;
   date: string; // locale string "M/D/YYYY"
   rawTranscript: string;
+  transcript?: string;
   task: string;
   skills: string[];
   impact: string;
+  resumeBullet?: string;
+  starStory?: StarStory | null;
   folder: string;
   tag: string;
   dot: string;
@@ -49,57 +53,31 @@ const initialFolders: FolderDef[] = [
 const today = new Date();
 const fmtDate = (d: Date) => d.toLocaleDateString("en-US");
 
-const seedLogs: LogItem[] = [
-  {
-    id: "l1",
-    title: "API versioning patterns",
-    time: "10:02 AM - 11:00 AM",
-    date: fmtDate(today),
-    rawTranscript:
-      "So I was reading about API design today and spent time understanding why you would version your API -- like if you have v1 and v2, you can introduce breaking changes without killing existing clients.",
-    task: "Learned how REST API versioning works and why breaking changes require a new version path",
-    skills: ["API Design", "System Architecture"],
-    impact: "Avoided breaking client integrations in production",
-    folder: "",
-    tag: "",
-    dot: "",
-    source: "voice",
-  },
-  {
-    id: "l2",
-    title: "PR review feedback loop",
-    time: "11:32 AM - 12:15 PM",
-    date: fmtDate(today),
-    rawTranscript:
-      "Did a code review today and noticed my comments kept being misunderstood -- people were not sure if I was blocking the PR or just suggesting.",
-    task: "Studied code review patterns -- what makes feedback actionable vs vague",
-    skills: ["Code Review", "Communication"],
-    impact: "Reduced back-and-forth on review cycles",
-    folder: "",
-    tag: "",
-    dot: "",
-    source: "text",
-  },
-  {
-    id: "l3",
-    title: "Q4 stakeholder proposal",
-    time: "1:04 PM - 2:30 PM",
-    date: fmtDate(today),
-    rawTranscript:
-      "Worked on a Q4 proposal today for the new dashboard feature. Tried a different structure this time -- led with the business impact first, then the technical approach.",
-    task: "Practiced structuring proposals for non-technical stakeholders",
-    skills: ["Communication", "Presentation"],
-    impact: "Proposal approved with no revisions requested",
-    folder: "",
-    tag: "",
-    dot: "",
-    source: "voice",
-  },
-];
-
 export function LogsProvider({ children }: { children: React.ReactNode }) {
   const [folders, setFolders] = useState<FolderDef[]>(initialFolders);
-  const [allLogs, setAllLogs] = useState<LogItem[]>(seedLogs);
+  const [allLogs, setAllLogs] = useState<LogItem[]>([]);
+
+  useEffect(() => {
+    let active = true;
+
+    const loadLogs = async () => {
+      try {
+        const res = await fetch("/api/logs", { cache: "no-store" });
+        if (!res.ok) return;
+        const data = await res.json();
+        if (!active || !Array.isArray(data)) return;
+        setAllLogs(data.map(mapApiLogToLogItem));
+      } catch {
+        // Keep empty state if persisted logs cannot be loaded.
+      }
+    };
+
+    loadLogs();
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const addLog = (log: LogItem) => setAllLogs((prev) => [...prev, log]);
   const updateLog = (id: string, partial: Partial<LogItem>) =>
@@ -119,4 +97,43 @@ export function useLogs() {
   const ctx = useContext(LogsContext);
   if (!ctx) throw new Error("useLogs must be used inside LogsProvider");
   return ctx;
+}
+
+function mapApiLogToLogItem(log: any): LogItem {
+  const rawDate = typeof log.date === "string" ? log.date : "";
+  const localeDate = /^\d{4}-\d{2}-\d{2}$/.test(rawDate)
+    ? (() => {
+        const [year, month, day] = rawDate.split("-").map(Number);
+        return fmtDate(new Date(year, month - 1, day));
+      })()
+    : rawDate || fmtDate(today);
+
+  const transcript = log.rawTranscript ?? log.transcript ?? "";
+
+  return {
+    id: String(log.id),
+    title: log.title || deriveTitle(transcript || log.task || "New Log"),
+    time: log.time || "",
+    date: localeDate,
+    rawTranscript: transcript,
+    transcript: log.transcript,
+    task: log.task || "",
+    skills: Array.isArray(log.skills) ? log.skills : [],
+    impact: log.impact || "",
+    resumeBullet: log.resumeBullet,
+    starStory: log.starStory ?? null,
+    folder: log.folder || "",
+    tag: log.tag || "",
+    dot: log.dot || "",
+    source: log.source === "text" ? "text" : "voice",
+  };
+}
+
+function deriveTitle(text: string) {
+  const words = text
+    .replace(/[^a-zA-Z\s]/g, "")
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 6);
+  return words.length ? words.map((w) => w[0].toUpperCase() + w.slice(1)).join(" ") : "New Log";
 }

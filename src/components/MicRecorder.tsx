@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { useRecorder } from "@/hooks/useRecorder";
 import { useLogs } from "@/context/LogsContext";
+import { StarStory } from "@/app/lib/types";
 
 import TranscribeOverlay from "./TranscribeOverlay";
 
@@ -12,26 +13,49 @@ const fmt = (secs: number) => `${pad(Math.floor(secs / 3600))}:${pad(Math.floor(
 export function MicRecorder() {
   const { addLog } = useLogs();
   const [memoText, setMemoText] = useState("");
+  const [pendingLog, setPendingLog] = useState<PendingLog | null>(null);
+  const [popupDate, setPopupDate] = useState(todayDateValue());
+  const [popupTask, setPopupTask] = useState("");
+  const [popupImpact, setPopupImpact] = useState("");
+  const [saving, setSaving] = useState(false);
 
   const { isRecording, isPaused, seconds, transcribe, startRecording, stopRecording, togglePause, submitMemo } = useRecorder({
-    onComplete: (text, source) => {
+    onComplete: async (text, source) => {
       const now = new Date();
       const timeStr = now.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" });
-      const newLog = {
-        id: `log-${Date.now()}`,
-        title: deriveTitle(text),
-        time: `${timeStr} - ${timeStr}`,
-        date: now.toLocaleDateString("en-US"),
-        rawTranscript: text,
-        task: text,
-        skills: [],
-        impact: "",
-        folder: "",
-        tag: "",
-        dot: "",
-        source,
-      };
-      addLog(newLog);
+      try {
+        const res = await fetch("/api/logs", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            transcript: text,
+            rawTranscript: text,
+          }),
+        });
+
+        if (!res.ok) return;
+
+        const extracted = await res.json();
+        const nextPending = {
+          title: extracted.title || deriveTitle(text),
+          rawTranscript: text,
+          task: extracted.task || text,
+          skills: Array.isArray(extracted.skills) ? extracted.skills : [],
+          impact: extracted.impact || "",
+          resumeBullet: extracted.resumeBullet || "",
+          starStory: extracted.starStory ?? null,
+          startTime: timeStr,
+          endTime: timeStr,
+          source,
+        };
+
+        setPendingLog(nextPending);
+        setPopupDate(todayDateValue());
+        setPopupTask(nextPending.task);
+        setPopupImpact(nextPending.impact);
+      } catch {
+        // Avoid breaking the UI if the API request fails.
+      }
     },
   });
 
@@ -104,8 +128,115 @@ export function MicRecorder() {
           }
         }}
       />
+
+      <div className={`popup-backdrop ${pendingLog ? "show" : ""}`} onClick={closeDetailPopup} />
+      <div className={`detail-popup ${pendingLog ? "show" : ""}`}>
+        <div className="popup-title">New Log Entry</div>
+        <div className="popup-date-row">
+          <span className="popup-date-label">Date</span>
+          <input className="popup-date-input" value={popupDate} onChange={(e) => setPopupDate(e.target.value)} type="date" />
+        </div>
+        <div className="popup-field">
+          <label>What you did / learned</label>
+          <div
+            className="popup-field-value"
+            contentEditable
+            suppressContentEditableWarning
+            onInput={(e) => setPopupTask((e.target as HTMLDivElement).textContent || "")}
+          >
+            {popupTask}
+          </div>
+        </div>
+        <div className="popup-field">
+          <label>Skills demonstrated</label>
+          <div className="popup-skills">
+            {pendingLog?.skills.map((skill) => (
+              <span key={skill} className="skill-chip">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+        <div className="popup-field">
+          <label>Impact</label>
+          <div
+            className="popup-field-value"
+            contentEditable
+            suppressContentEditableWarning
+            onInput={(e) => setPopupImpact((e.target as HTMLDivElement).textContent || "")}
+          >
+            {popupImpact}
+          </div>
+        </div>
+        <div className="popup-actions">
+          <button className="btn-discard" onClick={closeDetailPopup}>
+            Discard
+          </button>
+          <button className="btn-save-log-popup" onClick={confirmSave} disabled={saving}>
+            {saving ? "Saving..." : "Save Log"}
+          </button>
+        </div>
+      </div>
     </div>
   );
+
+  function closeDetailPopup() {
+    if (saving) return;
+    setPendingLog(null);
+  }
+
+  async function confirmSave() {
+    if (!pendingLog) return;
+    setSaving(true);
+    try {
+      const res = await fetch("/api/logs", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          saveEntry: true,
+          title: pendingLog.title,
+          transcript: pendingLog.rawTranscript,
+          rawTranscript: pendingLog.rawTranscript,
+          task: popupTask,
+          skills: pendingLog.skills,
+          impact: popupImpact,
+          resumeBullet: pendingLog.resumeBullet,
+          starStory: pendingLog.starStory,
+          time: `${pendingLog.startTime} - ${pendingLog.endTime}`,
+          date: popupDate,
+          source: pendingLog.source,
+          folder: "",
+          tag: "",
+          dot: "",
+        }),
+      });
+
+      if (!res.ok) return;
+
+      const saved = await res.json();
+      addLog({
+        id: String(saved.id),
+        title: saved.title || pendingLog.title,
+        time: saved.time || `${pendingLog.startTime} - ${pendingLog.endTime}`,
+        date: normalizeDate(saved.date),
+        rawTranscript: saved.rawTranscript ?? pendingLog.rawTranscript,
+        transcript: saved.transcript,
+        task: saved.task || popupTask,
+        skills: Array.isArray(saved.skills) ? saved.skills : pendingLog.skills,
+        impact: saved.impact || popupImpact,
+        resumeBullet: saved.resumeBullet,
+        starStory: saved.starStory ?? pendingLog.starStory,
+        folder: saved.folder || "",
+        tag: saved.tag || "",
+        dot: saved.dot || "",
+        source: saved.source === "text" ? "text" : pendingLog.source,
+      });
+
+      setPendingLog(null);
+    } finally {
+      setSaving(false);
+    }
+  }
 }
 
 function deriveTitle(text: string) {
@@ -115,6 +246,33 @@ function deriveTitle(text: string) {
     .filter(Boolean)
     .slice(0, 6);
   return words.length ? words.map((w) => w[0].toUpperCase() + w.slice(1)).join(" ") : "New Log";
+}
+
+function normalizeDate(rawDate: string) {
+  if (!rawDate) return new Date().toLocaleDateString("en-US");
+  if (/^\d{4}-\d{2}-\d{2}$/.test(rawDate)) {
+    const [year, month, day] = rawDate.split("-").map(Number);
+    return new Date(year, month - 1, day).toLocaleDateString("en-US");
+  }
+  return rawDate;
+}
+
+function todayDateValue() {
+  const now = new Date();
+  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+}
+
+interface PendingLog {
+  title: string;
+  rawTranscript: string;
+  task: string;
+  skills: string[];
+  impact: string;
+  resumeBullet: string;
+  starStory: StarStory | null;
+  startTime: string;
+  endTime: string;
+  source: "voice" | "text";
 }
 
 export default MicRecorder;

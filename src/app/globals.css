@@ -14,9 +14,12 @@ body{
   font-family:var(--font-sans, 'DM Sans', sans-serif);
   background:var(--bg);
   min-height:100vh;
+  min-width:1280px;
   display:flex;
   flex-direction:column;
+  align-items:center;
   user-select:none;
+  overflow-x:auto;
 }
 
 a{color:inherit;text-decoration:none}
@@ -24,17 +27,17 @@ button{font-family:inherit}
 
 /* Imported design CSS from the reference HTML */
 
-nav{display:flex;align-items:center;justify-content:space-between;padding:20px 48px}
+nav{display:flex;align-items:center;justify-content:space-between;padding:20px 48px;width:100%;max-width:1280px}
 .nav-brand{font-family:var(--font-serif,'DM Serif Display',serif);font-size:20px;color:var(--nav-active)}
 .nav-links{display:flex;align-items:center;gap:36px;list-style:none}
 .nav-links li a{font-size:14.5px;font-weight:400;color:var(--nav-inactive);transition:color 0.2s;cursor:pointer}
 .nav-links li a.active{color:var(--nav-active);font-weight:600}
 .nav-links li a:hover{color:var(--nav-active)}
 .nav-profile{display:flex;align-items:center;gap:8px;color:var(--nav-inactive);font-size:14.5px}
-.page{display:none;flex:1;flex-direction:column}
+.page{display:none;flex:1;flex-direction:column;width:100%;max-width:1280px}
 .page.active{display:flex}
 
-.layout{display:flex;gap:20px;padding:0 48px 48px;flex:1;align-items:flex-start}
+.layout{display:flex;gap:20px;padding:0 48px 48px;flex:1;align-items:flex-start;width:100%}
 .sidebar{width:210px;flex-shrink:0;display:flex;flex-direction:column;gap:12px;padding-top:4px}
 .sidebar-title{font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px}
 .folder{border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;cursor:pointer;transition:transform 0.18s,box-shadow 0.18s;position:relative;min-height:78px;border:2px dashed transparent}
@@ -122,7 +125,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 4
 .transcribe-cursor{display:inline-block;width:2px;height:13px;background:var(--blue-core);margin-left:2px;vertical-align:middle;animation:blink 0.7s step-end infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
-.tasks-page{padding:0 48px 48px;flex:1;display:flex;flex-direction:column}
+.tasks-page{padding:0 48px 48px;flex:1;display:flex;flex-direction:column;width:100%}
 .tasks-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;gap:16px;flex-wrap:wrap}
 .tasks-header-left{display:flex;align-items:center;gap:20px}
 .tasks-title{font-family:var(--font-serif,'DM Serif Display',serif);font-size:26px;color:var(--text-primary)}
@@ -190,7 +193,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 4
 .fc-new-icon{font-size:22px;color:var(--text-muted)}
 .fc-new-label{font-size:13.5px;font-weight:500;color:var(--text-muted)}
 
-.profile-page{padding:0 48px 48px;flex:1;display:flex;flex-direction:column;gap:28px}
+.profile-page{padding:0 48px 48px;flex:1;display:flex;flex-direction:column;gap:28px;width:100%}
 .profile-header{display:flex;align-items:center;gap:18px;padding-top:4px}
 .profile-avatar{width:52px;height:52px;border-radius:50%;background:var(--blue-core);color:white;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;flex-shrink:0}
 .profile-name{font-family:var(--font-serif,'DM Serif Display',serif);font-size:22px;color:var(--text-primary)}
@@ -237,7 +240,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 4
 .cal-log-title{font-size:13.5px;font-weight:500;color:var(--text-primary);flex:1}
 .cal-log-folder{font-size:10.5px;padding:2px 8px;border-radius:20px;font-weight:500}
 
-.resume-page{padding:0 48px 48px;flex:1;display:flex;flex-direction:column;gap:20px}
+.resume-page{padding:0 48px 48px;flex:1;display:flex;flex-direction:column;gap:20px;width:100%}
 .resume-title{font-family:var(--font-serif,'DM Serif Display',serif);font-size:26px;color:var(--text-primary);margin-bottom:4px}
 .week-card{background:var(--card-bg);backdrop-filter:blur(12px);border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.08);margin-bottom:20px}
 .week-card-inner{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:0}

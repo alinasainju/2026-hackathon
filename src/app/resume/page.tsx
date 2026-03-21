@@ -6,8 +6,8 @@ import WeekCard from "@/components/WeekCard";
 import { useLogs } from "@/context/LogsContext";
 
 export default function ResumePage() {
-  const { allLogs } = useLogs();
-  const weeks = groupByWeek(allLogs);
+  const { allLogs, folders } = useLogs();
+  const weeks = groupByWeekAndFolder(allLogs, folders);
   const [weekStarState, setWeekStarState] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export default function ResumePage() {
           <WeekCard
             key={w.key}
             weekKey={w.key}
-            weekLabel={`Week ${weeks.length - idx}`}
+            weekLabel={w.label || `Week ${weeks.length - idx}`}
             dateRange={w.range}
             logs={w.logs}
             hasStar={detectStar(w.logs)}
@@ -56,8 +56,8 @@ export default function ResumePage() {
   );
 }
 
-function groupByWeek(logs: ReturnType<typeof useLogs>["allLogs"]) {
-  const map: Record<string, { start: Date; end: Date; logs: typeof logs }> = {};
+function groupByWeekAndFolder(logs: ReturnType<typeof useLogs>["allLogs"], folders: ReturnType<typeof useLogs>["folders"]) {
+  const map: Record<string, { start: Date; end: Date; logs: typeof logs; folderLabel: string }> = {};
   logs.forEach((l) => {
     if (!l.date) return;
     const d = new Date(l.date);
@@ -66,14 +66,18 @@ function groupByWeek(logs: ReturnType<typeof useLogs>["allLogs"]) {
     mon.setDate(d.getDate() - (dow === 0 ? 6 : dow - 1));
     const sun = new Date(mon);
     sun.setDate(mon.getDate() + 6);
-    const key = mon.toLocaleDateString("en-US");
-    if (!map[key]) map[key] = { start: mon, end: sun, logs: [] };
+    const folder = folders.find((item) => item.key === l.folder) ?? null;
+    const folderKey = folder?.key || "unassigned";
+    const folderLabel = folder?.name || "Unassigned";
+    const key = `${mon.toLocaleDateString("en-US")}::${folderKey}`;
+    if (!map[key]) map[key] = { start: mon, end: sun, logs: [], folderLabel };
     map[key].logs.push(l);
   });
   return Object.entries(map)
-    .sort((a, b) => new Date(b[0]).getTime() - new Date(a[0]).getTime())
+    .sort((a, b) => b[1].start.getTime() - a[1].start.getTime())
     .map(([key, val]) => ({
       key,
+      label: val.folderLabel,
       range: `${fmtShort(val.start)} - ${fmtShort(val.end)}, ${val.end.getFullYear()}`,
       logs: val.logs,
     }));
@@ -82,5 +86,5 @@ function groupByWeek(logs: ReturnType<typeof useLogs>["allLogs"]) {
 const fmtShort = (d: Date) => d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
 
 function detectStar(logs: ReturnType<typeof useLogs>["allLogs"]) {
-  return logs.some((log) => !!log.task && log.task.length > 40 && !!log.impact && log.impact.length > 20);
+  return logs.some((log) => !!log.starStory);
 }

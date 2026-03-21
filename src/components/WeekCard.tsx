@@ -108,8 +108,8 @@ function buildSkillsPanel(skills: { name: string; count: number }[]) {
 
 function buildStarPanel(logs: LogItem[]) {
   const eligible = logs
-    .filter((log) => !!log.task && log.task.length > 40 && !!log.impact && log.impact.length > 20)
-    .sort((a, b) => b.task.length + b.impact.length - (a.task.length + a.impact.length));
+    .filter((log) => !!log.starStory)
+    .sort((a, b) => (b.task.length + b.impact.length) - (a.task.length + a.impact.length));
 
   if (eligible.length === 0) {
     return (
@@ -121,8 +121,15 @@ function buildStarPanel(logs: LogItem[]) {
   }
 
   const best = eligible[0];
-  const task = best.task.length > 100 ? `${best.task.slice(0, 100)}…` : best.task;
-  const actionSkills = best.skills.length > 0 ? best.skills.join(", ") : "problem-solving";
+  const story = best.starStory;
+  if (!story) {
+    return (
+      <div className="star-panel">
+        <div className="star-panel-label">STAR STORIES</div>
+        <div className="star-notice">Add more detail to your logs to unlock STAR stories.</div>
+      </div>
+    );
+  }
 
   return (
     <div className="star-panel">
@@ -138,25 +145,25 @@ function buildStarPanel(logs: LogItem[]) {
           <div className="star-box-letter" style={{ color: "#a05a20" }}>
             S — Situation
           </div>
-          <div className="star-box-text">You were working on: {best.title}.</div>
+          <div className="star-box-text">{story.situation}</div>
         </div>
         <div className="star-box star-box-t">
           <div className="star-box-letter" style={{ color: "#1f5a8a" }}>
             T — Task
           </div>
-          <div className="star-box-text">{task}</div>
+          <div className="star-box-text">{story.task}</div>
         </div>
         <div className="star-box star-box-a">
           <div className="star-box-letter" style={{ color: "#1a6630" }}>
             A — Action
           </div>
-          <div className="star-box-text">Used {actionSkills} to tackle the challenge.</div>
+          <div className="star-box-text">{story.action}</div>
         </div>
         <div className="star-box star-box-r">
           <div className="star-box-letter" style={{ color: "#7a2a8a" }}>
             R — Result
           </div>
-          <div className="star-box-text">{best.impact}</div>
+          <div className="star-box-text">{story.result}</div>
         </div>
       </div>
     </div>
