@@ -30,6 +30,7 @@ export function MicRecorder() {
           body: JSON.stringify({
             transcript: text,
             rawTranscript: text,
+            source,
           }),
         });
 
