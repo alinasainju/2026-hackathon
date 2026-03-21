@@ -1,21 +1,21 @@
 [
   {
-    "id": "c7c182ce-c612-4221-9b8e-f20af9c89d7b",
+    "id": "110292fa-d12f-4739-b5da-1b03e7b622a4",
     "date": "2026-03-21",
-    "title": "New Log",
-    "time": "01:55 PM - 01:55 PM",
-    "transcript": "hi",
-    "rawTranscript": "hi",
-    "task": "Captured work related to new log.",
+    "title": "Just Going Test See",
+    "time": "02:09 PM - 02:09 PM",
+    "transcript": "I'm just going to test this just to see if  that I",
+    "rawTranscript": "I'm just going to test this just to see if  that I",
+    "task": "Captured work related to just going test see.",
     "skills": [
       "Problem Solving"
     ],
-    "impact": "Clarified the work completed and captured a usable takeaway for future resume and interview use.",
-    "resumeBullet": "Documented new log and captured impact: Clarified the work completed and captured a usable takeaway for future resume and interview use.",
+    "impact": "I'm just going to test this just to see if  that I",
+    "resumeBullet": "Documented just going test see and captured impact: I'm just going to test this just to see if  that I",
     "starStory": null,
     "folder": "",
     "tag": "",
     "dot": "",
-    "source": "text"
+    "source": "voice"
   }
 ]

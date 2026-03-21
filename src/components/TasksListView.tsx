@@ -2,6 +2,8 @@
 
 import { useMemo, useState } from "react";
 import { FolderDef, LogItem } from "@/context/LogsContext";
+import MicrophoneIcon from "@/components/MicrophoneIcon";
+import PencilIcon from "@/components/PencilIcon";
 
 interface Props {
   logs: LogItem[];
@@ -58,7 +60,7 @@ export function TasksListView({ logs, folders, activeFolder }: Props) {
                         setOpenTranscriptId(isTranscriptOpen ? null : log.id);
                       }}
                     >
-                      {log.source === "voice" ? "🎙" : "✏️"}
+                      {log.source === "voice" ? <MicrophoneIcon size={13} color="currentColor" /> : <PencilIcon size={13} color="currentColor" />}
                     </div>
                     <div className="log-row-title">{log.title}</div>
                     <div className="log-row-actions">
@@ -70,7 +72,7 @@ export function TasksListView({ logs, folders, activeFolder }: Props) {
                   <div className={`log-row-expand ${isTranscriptOpen ? "show" : ""}`}>
                     <div className="expand-transcript-wrap">
                       <div className={`expand-source-badge ${log.source}`}>
-                        {log.source === "voice" ? "🎙 Voice recording" : "✏️ Typed memo"}
+                        {log.source === "voice" ? "Voice recording" : "Typed memo"}
                       </div>
                       <div className="expand-raw-label">Raw transcription</div>
                       <div className="expand-transcript">{log.rawTranscript || log.task}</div>
