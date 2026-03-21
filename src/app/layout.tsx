@@ -7,7 +7,7 @@ const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700"
 const dmSerif = DM_Serif_Display({ subsets: ["latin"], weight: ["400"], variable: "--font-serif" });
 
 export const metadata: Metadata = {
-  title: "WorkLog Pro",
+  title: "STRIDE",
   description: "Voice-first work logging and resume builder",
 };
 

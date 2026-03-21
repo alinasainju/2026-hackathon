@@ -14,7 +14,7 @@ export function Nav() {
   const pathname = usePathname();
   return (
     <nav>
-      <div className="nav-brand">WorkLog Pro</div>
+      <div className="nav-brand">Stride</div>
       <ul className="nav-links">
         {links.map((l) => (
           <li key={l.href}>
