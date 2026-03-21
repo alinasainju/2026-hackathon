@@ -1,0 +1,118 @@
+[
+  {
+    "weekOf": "2026-03-09",
+    "topSkills": [
+      "CSS",
+      "Responsive Design",
+      "Bug Fixing",
+      "Accessibility",
+      "End-to-End Testing"
+    ],
+    "keyAccomplishments": [
+      "Conducted comprehensive mobile responsiveness audit identifying 23 layout issues",
+      "Resolved 10 critical mobile layout bugs improving user experience",
+      "Implemented accessibility improvements with ARIA labels and keyboard navigation"
+    ],
+    "resumeBullets": [
+      "Conducted a full mobile responsiveness audit across the web application, identifying and prioritizing 23 layout issues to guide UX improvements",
+      "Resolved 10 critical mobile responsiveness issues by refactoring fixed-width layouts to flexbox and correcting viewport configurations",
+      "Resolved a CSV export data corruption bug affecting customer data with special characters by implementing proper serialization, restoring export reliability"
+    ],
+    "starStories": [
+      {
+        "situation": "A customer reported that exported CSV files contained corrupted data rows whenever the data included commas or special characters",
+        "task": "Identify why the CSV export was corrupting data and implement a robust fix",
+        "action": "Traced the issue to manual string concatenation without escaping, replaced with a proper CSV serialization library and added test cases for edge cases",
+        "result": "CSV exports now handle all special characters correctly, resolving the customer issue and preventing future data integrity problems"
+      }
+    ],
+    "generatedAt": "2026-03-21T05:15:41.298Z"
+  },
+  {
+    "weekOf": "2026-03-02",
+    "topSkills": [
+      "WebSockets",
+      "System Design",
+      "React",
+      "Redis",
+      "Concurrency"
+    ],
+    "keyAccomplishments": [
+      "Architected and implemented a complete WebSocket-based notification system to replace inefficient database polling",
+      "Resolved a complex race condition causing duplicate notifications using mutex lock patterns",
+      "Successfully presented the system refactor to engineering leadership including CTO"
+    ],
+    "resumeBullets": [
+      "Architected a WebSocket-based real-time notification system to replace a polling mechanism generating excessive database load",
+      "Implemented WebSocket connection manager with Redis pub/sub to enable horizontally scalable real-time notification delivery",
+      "Presented a real-time WebSocket notification system to engineering leadership including CTO, demonstrating scalability design and reconnection handling"
+    ],
+    "starStories": [
+      {
+        "situation": "The legacy notification system used 5-second polling, creating significant unnecessary database load at scale",
+        "task": "Refactor the system to real-time delivery while ensuring scalability and reliability",
+        "action": "Designed and built a WebSocket server with Redis pub/sub, resolved a race condition, and built a complete React frontend with toast and badge components",
+        "result": "Successfully presented the system to the CTO and full engineering team, receiving strong positive feedback and approval for production deployment"
+      }
+    ],
+    "generatedAt": "2026-03-21T05:15:36.719Z"
+  },
+  {
+    "weekOf": "2026-02-23",
+    "topSkills": [
+      "PostgreSQL",
+      "Performance Optimization",
+      "GraphQL",
+      "Database Optimization",
+      "Integration Testing"
+    ],
+    "keyAccomplishments": [
+      "Achieved 94% performance improvement on search queries by implementing database indexes",
+      "Successfully collaborated with senior engineers on GraphQL endpoint development with N+1 query prevention",
+      "Received positive manager feedback and was assigned ownership of critical notification system refactor"
+    ],
+    "resumeBullets": [
+      "Optimized PostgreSQL search queries by implementing targeted indexes, achieving a 94% reduction in query latency (3.2s → 180ms)",
+      "Pair programmed with senior engineers to implement GraphQL resolvers with DataLoader, preventing N+1 query issues in production APIs",
+      "Authored integration tests for GraphQL endpoints using Jest, while providing technical mentorship to fellow interns on CSS layout challenges"
+    ],
+    "starStories": [
+      {
+        "situation": "The search feature was taking over 3 seconds on large datasets, causing poor user experience and complaints",
+        "task": "Investigate and resolve the search performance bottleneck",
+        "action": "Profiled database queries, identified missing indexes on search columns, implemented indexes and ran before/after benchmarks",
+        "result": "Search latency dropped from 3.2 seconds to 180 milliseconds — a 94% improvement, recognized by the engineering team"
+      }
+    ],
+    "generatedAt": "2026-03-21T05:15:31.932Z"
+  },
+  {
+    "weekOf": "2026-02-16",
+    "topSkills": [
+      "React",
+      "Authentication",
+      "Debugging",
+      "API Integration",
+      "Unit Testing"
+    ],
+    "keyAccomplishments": [
+      "Fixed critical timezone bug in JWT token expiry logic affecting thousands of users",
+      "Delivered React analytics dashboard component with live API integration ahead of deadline",
+      "Successfully onboarded and made production contributions within first week"
+    ],
+    "resumeBullets": [
+      "Identified and resolved a UTC timezone bug in JWT token expiry logic, restoring correct session behavior for users across multiple time zones",
+      "Built and documented a React analytics dashboard component with live API integration and Storybook stories, delivered ahead of sprint deadline",
+      "Onboarded to a production-grade API architecture on day one, independently navigating technical documentation to accelerate ramp-up time"
+    ],
+    "starStories": [
+      {
+        "situation": "US East Coast users were being logged out unexpectedly due to tokens expiring 5 hours too early",
+        "task": "Find and fix the root cause of premature token expiration in the auth middleware",
+        "action": "Traced the bug to a local time vs UTC mismatch in the expiry check, corrected the logic, and added unit tests to prevent regression",
+        "result": "Pull request approved and merged, eliminating unexpected logouts for thousands of users"
+      }
+    ],
+    "generatedAt": "2026-03-21T05:15:27.383Z"
+  }
+]

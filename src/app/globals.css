@@ -5,6 +5,13 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --color-brand-black:    #1c1b1f;
+  --color-brand-grey:     #6f6c6a;
+  --color-brand-teal:     #6366f1;
+  --color-brand-blue:     #eef2ff;
+  --color-brand-purple:   #8b5cf6;
+  --color-brand-indigo:   #6366f1;
+  --color-brand-offwhite: #f7f6f3;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
@@ -128,3 +135,23 @@
     @apply font-sans;
   }
 }
+
+/* Waveform bar animation */
+@keyframes waveform {
+  0%, 100% { transform: scaleY(0.25); }
+  50%       { transform: scaleY(1); }
+}
+.waveform-bar {
+  width: 3px;
+  border-radius: 9999px;
+  background-color: currentColor;
+  transform-origin: bottom;
+  animation: waveform 0.9s ease-in-out infinite;
+}
+.waveform-bar:nth-child(1) { animation-delay: 0.00s; height: 20px; }
+.waveform-bar:nth-child(2) { animation-delay: 0.10s; height: 28px; }
+.waveform-bar:nth-child(3) { animation-delay: 0.20s; height: 16px; }
+.waveform-bar:nth-child(4) { animation-delay: 0.30s; height: 24px; }
+.waveform-bar:nth-child(5) { animation-delay: 0.15s; height: 20px; }
+.waveform-bar:nth-child(6) { animation-delay: 0.25s; height: 28px; }
+.waveform-bar:nth-child(7) { animation-delay: 0.05s; height: 16px; }

@@ -1,101 +1,116 @@
 // components/LogCard.tsx
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
+"use client";
+
+import { useState } from "react";
 import { LogEntry } from "@lib/types";
 import StarStoryBadge from "./StarStoryBadge";
-import { CalendarDays, Mic, Target, Zap, FileText } from "lucide-react";
+import { CalendarDays, Mic, Target, Zap, FileText, ChevronDown, ChevronUp } from "lucide-react";
 
 interface LogCardProps {
   log: LogEntry;
 }
 
 export default function LogCard({ log }: LogCardProps) {
+  const [expanded, setExpanded] = useState(false);
+
   const formattedDate = new Date(log.date + "T00:00:00").toLocaleDateString("en-US", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
+    weekday: "long", year: "numeric", month: "long", day: "numeric",
   });
 
+  const previewSkills = log.skills.slice(0, 3);
+  const extraSkills = log.skills.length - 3;
+
   return (
-    <Card className="w-full shadow-sm hover:shadow-md transition-shadow">
-      <CardHeader className="pb-2">
+    <div className={`w-full bg-white border-stone-200 rounded-xl shadow-none overflow-hidden border ${log.starStory ? "border-l-2 border-l-brand-purple" : ""}`}>
+      <div className="p-4 space-y-3">
+        {/* Header */}
         <div className="flex items-center justify-between">
-          <CardTitle className="text-sm font-medium text-slate-500 flex items-center gap-2">
-            <CalendarDays className="w-4 h-4" />
-            {formattedDate}
-          </CardTitle>
+          <div className="flex items-center gap-1.5 text-xs text-brand-grey">
+            <CalendarDays className="w-3.5 h-3.5" />
+            <span>{formattedDate}</span>
+          </div>
           {log.starStory && (
-            <Badge className="bg-amber-100 text-amber-700 border-amber-200 text-xs">
-              ⭐ STAR Story
-            </Badge>
+            <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-brand-purple bg-brand-purple/10 rounded-full px-2 py-0.5">
+              ★ STAR
+            </span>
           )}
         </div>
-      </CardHeader>
-
-      <CardContent className="space-y-3">
-        {/* Transcript */}
-        <div className="flex gap-2 items-start">
-          <Mic className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
-          <p className="text-sm text-slate-500 italic">"{log.transcript}"</p>
-        </div>
-
-        <Separator />
 
         {/* Task */}
-        <div className="flex gap-2 items-start">
-          <Target className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
-          <div>
-            <p className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-0.5">
-              Task
-            </p>
-            <p className="text-sm text-slate-700">{log.task}</p>
-          </div>
+        <div>
+          <p className="text-[10px] font-semibold text-stone-400 uppercase tracking-wide mb-0.5 flex items-center gap-1">
+            <Target className="w-3 h-3" /> Task
+          </p>
+          <p className="text-sm text-brand-black font-medium leading-snug">{log.task}</p>
         </div>
 
         {/* Skills */}
-        <div className="flex gap-2 items-start">
-          <Zap className="w-4 h-4 text-purple-500 shrink-0 mt-0.5" />
+        <div>
+          <p className="text-[10px] font-semibold text-stone-400 uppercase tracking-wide mb-1 flex items-center gap-1">
+            <Zap className="w-3 h-3" /> Skills
+          </p>
+          <div className="flex items-center gap-1.5 flex-wrap">
+            {previewSkills.map((skill) => (
+              <span key={skill} className="text-xs bg-stone-100 text-stone-600 rounded-md px-2 py-0.5 font-medium">
+                {skill}
+              </span>
+            ))}
+            {extraSkills > 0 && !expanded && (
+              <span className="text-xs text-stone-400">+{extraSkills} more</span>
+            )}
+          </div>
+        </div>
+
+        {/* Resume bullet */}
+        <div className="border border-stone-200 rounded-lg p-3 flex gap-2 items-start bg-stone-50">
+          <FileText className="w-3.5 h-3.5 text-brand-indigo shrink-0 mt-0.5" />
           <div>
-            <p className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1">
-              Skills
-            </p>
-            <div className="flex flex-wrap gap-1">
-              {log.skills.map((skill) => (
-                <Badge key={skill} variant="secondary" className="text-xs">
-                  {skill}
-                </Badge>
-              ))}
+            <p className="text-[10px] font-semibold text-stone-400 uppercase tracking-wide mb-0.5">Resume Bullet</p>
+            <p className="text-sm text-brand-black leading-relaxed">{log.resumeBullet}</p>
+          </div>
+        </div>
+
+        {/* Expanded */}
+        {expanded && (
+          <div className="space-y-3 pt-1 border-t border-stone-100">
+            {log.skills.length > 3 && (
+              <div className="flex gap-1.5 flex-wrap pt-1">
+                {log.skills.map((skill) => (
+                  <span key={skill} className="text-xs bg-stone-100 text-stone-600 rounded-md px-2 py-0.5 font-medium">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            <div>
+              <p className="text-[10px] font-semibold text-stone-400 uppercase tracking-wide mb-0.5 flex items-center gap-1">
+                <Target className="w-3 h-3" /> Impact
+              </p>
+              <p className="text-sm text-brand-grey">{log.impact}</p>
             </div>
-          </div>
-        </div>
 
-        {/* Impact */}
-        <div className="flex gap-2 items-start">
-          <Target className="w-4 h-4 text-green-500 shrink-0 mt-0.5" />
-          <div>
-            <p className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-0.5">
-              Impact
-            </p>
-            <p className="text-sm text-slate-700">{log.impact}</p>
-          </div>
-        </div>
+            <div>
+              <p className="text-[10px] font-semibold text-stone-400 uppercase tracking-wide mb-0.5 flex items-center gap-1">
+                <Mic className="w-3 h-3" /> Transcript
+              </p>
+              <p className="text-sm text-stone-400 italic">"{log.transcript}"</p>
+            </div>
 
-        {/* Resume Bullet */}
-        <div className="flex gap-2 items-start bg-slate-50 rounded-md p-2">
-          <FileText className="w-4 h-4 text-slate-500 shrink-0 mt-0.5" />
-          <div>
-            <p className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-0.5">
-              Resume Bullet
-            </p>
-            <p className="text-sm text-slate-700 font-medium">{log.resumeBullet}</p>
+            {log.starStory && <StarStoryBadge starStory={log.starStory} />}
           </div>
-        </div>
+        )}
 
-        {/* STAR Story */}
-        {log.starStory && <StarStoryBadge starStory={log.starStory} />}
-      </CardContent>
-    </Card>
+        <button
+          onClick={() => setExpanded((v) => !v)}
+          className="flex items-center gap-1 text-xs text-stone-400 hover:text-brand-grey transition-colors pt-1"
+        >
+          {expanded
+            ? <><ChevronUp className="w-3.5 h-3.5" /> Hide details</>
+            : <><ChevronDown className="w-3.5 h-3.5" /> Show details</>
+          }
+        </button>
+      </div>
+    </div>
   );
 }

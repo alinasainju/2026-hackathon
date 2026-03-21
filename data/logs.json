@@ -1,3 +1,505 @@
 [
-
+  {
+    "id": "3bc4aa50-8e4f-4a5d-af8b-5a114e2b6dea",
+    "date": "2026-03-21",
+    "transcript": "So today was kind of a weird mix of productive and frustrating. I spent the morning trying to write a SQL query to pull some analytics data that the product manager needed for a meeting tomorrow. I thought it would take like 30 minutes but it ended up taking most of the day because the data model is way more complicated than I expected and there were like three joins involved. I kept getting duplicate rows and I couldn't figure out why. I finally asked Jake and he spotted the issue in like two minutes which was both relieving and slightly embarrassing. Turns out I needed a distinct clause and I was joining on the wrong foreign key. The query is working now and I sent the results over to the PM who seemed really happy with it. On the school side I got my exam grade back, I got a B plus which honestly I'll take given how little I studied. I also have a group project meeting tonight that I'm dreading a little because one of my teammates has not been pulling their weight and I don't know how to bring that up without making it weird.",
+    "task": "Wrote a complex SQL query with multiple joins to pull analytics data for a product manager's meeting.",
+    "skills": [
+      "SQL",
+      "Data Analysis",
+      "Problem Solving",
+      "Cross-functional Collaboration"
+    ],
+    "impact": "Successfully delivered analytics data that the product manager was very satisfied with for an important meeting.",
+    "resumeBullet": "Developed complex SQL queries with multiple joins to extract analytics data, collaborating with senior team members to troubleshoot and deliver critical insights for product management decisions",
+    "starStory": {
+      "situation": "Product manager needed analytics data for a meeting tomorrow, but the data model was more complicated than expected with three joins required",
+      "task": "Write a SQL query to pull the required analytics data within a tight deadline",
+      "action": "Worked through the complex data model, identified issues with duplicate rows, sought help from a colleague (Jake) to troubleshoot the join logic and distinct clause problems",
+      "result": "Successfully delivered working query results that made the product manager very happy and ready for their meeting"
+    }
+  },
+  {
+    "id": "log-001",
+    "date": "2026-02-16",
+    "transcript": "Okay so first day of the internship was kind of overwhelming honestly. I spent most of the morning just setting up my laptop and getting access to all the tools. My manager Sarah walked me through the codebase for like an hour and I understood maybe half of it. I did manage to fix a small typo in the documentation which feels embarrassing to say out loud but hey it's something. Everyone seems nice but I definitely felt like the least experienced person in every room today.",
+    "task": "Onboarded to the engineering team, set up development environment, and made first documentation fix",
+    "skills": [
+      "Onboarding",
+      "Git",
+      "Technical Documentation"
+    ],
+    "impact": "Successfully configured local dev environment and submitted first pull request, establishing baseline for future contributions",
+    "resumeBullet": "Completed full onboarding including dev environment setup and submitted first pull request on day one of internship",
+    "starStory": null
+  },
+  {
+    "id": "log-002",
+    "date": "2026-02-17",
+    "transcript": "Had a one on one with my manager today. She gave me my first real task which is to help refactor some of the API utility functions. I spent a lot of the afternoon just reading the existing code trying to understand what it actually does. I also had an awkward moment in standup where I didn't know what to say so I just said I was still getting familiar with things. I need to get better at communicating progress even when I feel like I haven't done much. Also stayed late to finish my algorithms homework due tomorrow which is not ideal.",
+    "task": "Received first engineering task for API refactoring and studied existing codebase architecture",
+    "skills": [
+      "Code Review",
+      "REST APIs",
+      "JavaScript",
+      "Communication"
+    ],
+    "impact": "Gained sufficient codebase understanding to begin meaningful refactoring work the following day",
+    "resumeBullet": "Analyzed legacy API utility codebase to identify refactoring opportunities, preparing implementation plan for team review",
+    "starStory": null
+  },
+  {
+    "id": "log-003",
+    "date": "2026-02-18",
+    "transcript": "Started actually writing code today which felt good. I refactored two of the API utility functions to remove duplicate logic and I wrote unit tests for both of them. One of the senior engineers Jake reviewed my PR and had a bunch of comments which was kind of humbling but also really helpful. He pointed out that I was not handling edge cases for null inputs which is embarrassing but I learned a lot. I fixed everything by end of day and the PR got merged. Small win but I'll take it.",
+    "task": "Refactored two API utility functions, wrote unit tests, and responded to code review feedback",
+    "skills": [
+      "JavaScript",
+      "Unit Testing",
+      "Code Review",
+      "Edge Case Handling",
+      "Git"
+    ],
+    "impact": "Merged first production code contribution, removing duplicate logic and improving test coverage for two core utility functions",
+    "resumeBullet": "Refactored API utility functions and authored unit tests; incorporated senior engineer feedback to handle null edge cases before merging to production",
+    "starStory": {
+      "situation": "Senior engineer's code review revealed unhandled null input edge cases in my refactored API utility functions",
+      "task": "Fix all identified edge cases and improve the robustness of the utility functions before the PR could be merged",
+      "action": "Studied the review comments carefully, researched null-safe patterns in JavaScript, rewrote the affected logic with proper null guards, and added additional test cases covering the edge cases",
+      "result": "PR was approved and merged to production on the same day, and Jake specifically commended the thoroughness of the updated test suite"
+    }
+  },
+  {
+    "id": "log-004",
+    "date": "2026-02-19",
+    "transcript": "Pretty slow day today. I was assigned to look into a bug where the dashboard was showing incorrect totals for some users. I spent like three hours trying to reproduce it locally and could not. Eventually figured out it only happens in the staging environment with a specific data condition. I feel like I wasted a lot of time today just spinning my wheels. Also got my midterm grade back and it's a B minus which is lower than I wanted. Hard to focus on work when I'm stressed about school.",
+    "task": "Investigated dashboard total calculation bug and identified it as environment-specific data condition issue",
+    "skills": [
+      "Debugging",
+      "Problem Solving",
+      "Staging Environments",
+      "Data Analysis"
+    ],
+    "impact": "Narrowed bug reproduction to specific staging environment data condition, saving team time by scoping the investigation",
+    "resumeBullet": "Debugged environment-specific dashboard calculation issue, identifying root cause as a staging data condition through systematic reproduction testing",
+    "starStory": null
+  },
+  {
+    "id": "log-005",
+    "date": "2026-02-20",
+    "transcript": "Fixed the dashboard bug today. Turns out there was an off by one error in how the date range filter was being applied and it was causing some records to be double counted. Super satisfying to finally crack it. My fix was pretty clean too, just a one line change with a good explanation in the commit message. Sarah said good job in the team channel which honestly made my whole day. Also went to office hours for my data structures class and I think I finally understand AVL trees.",
+    "task": "Resolved dashboard double-counting bug caused by off-by-one error in date range filter logic",
+    "skills": [
+      "Debugging",
+      "JavaScript",
+      "Data Integrity",
+      "Git"
+    ],
+    "impact": "Fixed production bug that was causing incorrect financial totals for users with date-range filtered dashboard views",
+    "resumeBullet": "Identified and resolved production dashboard bug causing data double-counting by correcting off-by-one error in date range filter, restoring accurate totals for affected users",
+    "starStory": null
+  },
+  {
+    "id": "log-006",
+    "date": "2026-02-23",
+    "transcript": "Monday again. Team had a sprint planning meeting today and I actually got to contribute a suggestion about how we could batch some of the API calls to reduce load time on the main dashboard. My manager seemed interested and said we should explore it. That felt good. I'm starting to feel slightly less like I have no idea what I'm doing. In the afternoon I started on my next ticket which is adding a date picker component to the filter bar. I also completely forgot about a club meeting tonight which my friends are going to be mad about.",
+    "task": "Participated in sprint planning with a performance improvement proposal and began implementing date picker component",
+    "skills": [
+      "API Optimization",
+      "React",
+      "Sprint Planning",
+      "UI Development"
+    ],
+    "impact": "Proposed API batching strategy that was accepted for exploration, potentially reducing dashboard load time",
+    "resumeBullet": "Proposed API call batching optimization during sprint planning that was greenlit for development, and began implementation of date picker UI component",
+    "starStory": null
+  },
+  {
+    "id": "log-007",
+    "date": "2026-02-24",
+    "transcript": "Spent most of today on the date picker component. I used the existing design system components which made things a lot easier. I also had to look up how controlled components work in React again because I keep forgetting. I need to just sit down and really learn React properly. Got a PR up by end of day. Also had a phone call with my parents tonight and my dad keeps asking if this internship will turn into a full time offer which stresses me out because I genuinely don't know and I feel like I'm supposed to have my whole life figured out by now.",
+    "task": "Built and submitted date picker filter component using design system, implementing controlled component pattern",
+    "skills": [
+      "React",
+      "Controlled Components",
+      "Design Systems",
+      "UI Development"
+    ],
+    "impact": "Delivered date picker component PR ahead of schedule, enabling QA testing to begin the following day",
+    "resumeBullet": "Developed date picker filter component in React using internal design system, implementing controlled component pattern and submitting for review within one day",
+    "starStory": null
+  },
+  {
+    "id": "log-008",
+    "date": "2026-02-25",
+    "transcript": "Date picker PR got merged with only minor comments. Then I got pulled into an unexpected meeting about a performance issue on the reports page. Apparently it's been loading really slowly for customers with large datasets and they wanted ideas. I suggested we look at pagination and lazy loading and the team lead actually wrote my ideas on the whiteboard which felt surreal. I'm going to own the lazy loading implementation. Also I have a project proposal due Friday for my software engineering class and I haven't started it.",
+    "task": "Contributed to performance investigation for reports page and was assigned lazy loading implementation",
+    "skills": [
+      "Performance Optimization",
+      "Lazy Loading",
+      "Pagination",
+      "Problem Solving"
+    ],
+    "impact": "Identified lazy loading and pagination as solutions to reports page performance issue affecting customers with large datasets",
+    "resumeBullet": "Diagnosed reports page performance bottleneck for large-dataset customers and proposed lazy loading solution, subsequently leading the implementation effort",
+    "starStory": null
+  },
+  {
+    "id": "log-009",
+    "date": "2026-02-26",
+    "transcript": "Deep in the lazy loading implementation today. It's more complex than I thought because the existing data fetching logic is tightly coupled to the component state. I had to refactor how the component manages its loading state and I introduced a custom hook to handle it cleanly. Jake looked at my approach and said it was a good pattern which I was really happy about. I think I'm starting to actually understand React properly now. Stayed at the library until midnight finishing my software engineering project proposal. I need to manage my time better.",
+    "task": "Implemented custom React hook for lazy loading data fetching, decoupling loading state from component logic",
+    "skills": [
+      "React Hooks",
+      "Custom Hooks",
+      "Refactoring",
+      "State Management"
+    ],
+    "impact": "Created reusable custom hook for lazy loading that decoupled data fetching concerns and was praised by senior engineer as a good architectural pattern",
+    "resumeBullet": "Architected custom React hook for lazy loading that decoupled data fetching from component state, improving code reusability across the reports module",
+    "starStory": null
+  },
+  {
+    "id": "log-010",
+    "date": "2026-02-27",
+    "transcript": "Finished and merged the lazy loading implementation. The reports page load time went from like 8 seconds to under 2 seconds for the large dataset test cases which is a massive improvement. Sarah put it in the weekly wins channel and tagged me which was awesome. I also got asked to document the custom hook I wrote so other engineers can use it. Writing documentation is something I used to think was boring but I'm starting to see why it matters.",
+    "task": "Completed lazy loading implementation and authored developer documentation for the custom hook",
+    "skills": [
+      "React",
+      "Performance Optimization",
+      "Technical Writing",
+      "Documentation"
+    ],
+    "impact": "Reduced reports page load time by 75 percent, from 8 seconds to under 2 seconds for large dataset users",
+    "resumeBullet": "Reduced reports page load time by 75% through lazy loading implementation and authored reusable custom React hook documentation adopted by the broader engineering team",
+    "starStory": {
+      "situation": "The reports page was loading in over 8 seconds for customers with large datasets, causing frustration and impacting product perception",
+      "task": "Design and implement a performant lazy loading solution without breaking the existing tightly coupled component architecture",
+      "action": "Refactored the component data fetching logic into a custom React hook that supported incremental loading, then implemented lazy loading with intersection observers to trigger fetches on scroll",
+      "result": "Load time dropped from 8 seconds to under 2 seconds, a 75% improvement, which was highlighted in the weekly team wins channel by the engineering manager"
+    }
+  },
+  {
+    "id": "log-011",
+    "date": "2026-03-02",
+    "transcript": "New week and I was assigned to work on a new feature, a CSV export for the reports page. Seems straightforward but I want to make sure I handle large files well given what happened with the performance issue before. Had lunch with two other interns today, Maya and Carlos. It was nice to hear that they also feel lost sometimes. I think I put too much pressure on myself to seem like I know everything.",
+    "task": "Started planning CSV export feature for reports page with performance considerations for large datasets",
+    "skills": [
+      "Feature Planning",
+      "CSV Generation",
+      "Performance Awareness"
+    ],
+    "impact": "Began proactive design of CSV export with large file handling built in from the start, avoiding future performance issues",
+    "resumeBullet": "Initiated design of CSV export feature for reports module, applying lessons from prior performance work to architect large-file handling from the ground up",
+    "starStory": null
+  },
+  {
+    "id": "log-012",
+    "date": "2026-03-03",
+    "transcript": "Built the CSV export feature today. I used streaming to handle large files so it doesn't time out for users with lots of data. I'm pretty proud of this one because I thought ahead instead of just doing the simple thing. I also added column headers and proper formatting. PR is up and I included a description of the streaming approach in the PR description which I think made it easier to review. Had to skip the gym again which is starting to become a bad habit.",
+    "task": "Implemented streaming CSV export feature with proper formatting and column headers for large dataset support",
+    "skills": [
+      "Node.js Streams",
+      "CSV Generation",
+      "API Development",
+      "Performance"
+    ],
+    "impact": "Delivered CSV export with streaming support, preventing timeout issues for users exporting large datasets",
+    "resumeBullet": "Built streaming CSV export feature in Node.js for reports module, implementing file streaming to support large dataset exports without timeout failures",
+    "starStory": null
+  },
+  {
+    "id": "log-013",
+    "date": "2026-03-04",
+    "transcript": "CSV export PR got merged. I also sat in on a customer call today as a listener, which was really interesting. Hearing the customers talk about pain points made the work feel more real. One customer mentioned that they wished they could schedule exports to run automatically. I wrote that down as a potential feature idea. My manager noticed I was taking notes and asked me to share them with the team later which was cool.",
+    "task": "Observed customer call, documented pain points and feature ideas, and shared notes with engineering team",
+    "skills": [
+      "Customer Empathy",
+      "Requirements Gathering",
+      "Active Listening",
+      "Documentation"
+    ],
+    "impact": "Captured customer feature request for scheduled exports during call observation, contributing directly to product backlog",
+    "resumeBullet": "Participated in customer discovery call and identified scheduled export automation as a high-value feature request, documenting and presenting findings to the product and engineering team",
+    "starStory": null
+  },
+  {
+    "id": "log-014",
+    "date": "2026-03-05",
+    "transcript": "Presented my customer call notes in the team meeting today. It went well and there was a good discussion about the scheduled exports idea. The product manager said she wants to add it to the roadmap for next quarter. That felt really good knowing something I noticed directly influenced the product direction. Spent the rest of the day fixing a few small UI bugs, some misaligned buttons and a broken tooltip.",
+    "task": "Presented customer call insights to team and fixed multiple UI bugs including alignment and tooltip issues",
+    "skills": [
+      "Presentation Skills",
+      "Product Thinking",
+      "CSS",
+      "UI Debugging"
+    ],
+    "impact": "Customer insight presentation directly influenced product roadmap, adding scheduled exports as a Q2 feature",
+    "resumeBullet": "Presented customer discovery insights that influenced product roadmap, securing scheduled export automation as a Q2 feature, while also resolving multiple UI consistency bugs",
+    "starStory": {
+      "situation": "During a customer call observation, I noticed repeated customer frustration about manually running the same exports every week",
+      "task": "Document and present this insight to the team in a way that could drive product prioritization",
+      "action": "Took structured notes during the call, synthesized the feedback into a clear product gap analysis, and presented it in the weekly team meeting with a concrete feature proposal",
+      "result": "The product manager added scheduled export automation to the Q2 roadmap, directly connecting my observation to a planned product improvement"
+    }
+  },
+  {
+    "id": "log-015",
+    "date": "2026-03-06",
+    "transcript": "Honestly a rough day. I pushed a change that broke the tooltip component in production for about 20 minutes before it got caught and rolled back. I felt terrible. Sarah was pretty calm about it and said it happens to everyone but I still felt awful. We did a mini retro and I realized I had not run the full test suite before pushing because I was in a hurry. Lesson learned the hard way.",
+    "task": "Investigated and participated in retro for production tooltip regression caused by untested change",
+    "skills": [
+      "Incident Response",
+      "Testing Discipline",
+      "Retrospectives",
+      "Accountability"
+    ],
+    "impact": "Identified root cause of production regression as insufficient pre-push testing, leading to improved personal testing checklist",
+    "resumeBullet": "Participated in production incident retrospective, identifying testing process gap and implementing a personal pre-push checklist to prevent regression recurrence",
+    "starStory": null
+  },
+  {
+    "id": "log-016",
+    "date": "2026-03-09",
+    "transcript": "Started the week by writing a proper pre-push checklist for myself after last week's incident. Run unit tests, run integration tests, test in staging, check the components I touched. Simple stuff but I clearly needed to make it explicit. Then got assigned a new ticket to add role based access control to the export feature so that only admins can trigger bulk exports. This involves touching the auth middleware which is new territory for me.",
+    "task": "Created personal pre-push testing checklist and began planning role-based access control for export feature",
+    "skills": [
+      "Testing Discipline",
+      "Authentication",
+      "Authorization",
+      "Middleware",
+      "Security"
+    ],
+    "impact": "Established systematic pre-push testing process to prevent future regressions, and scoped RBAC implementation plan for export security feature",
+    "resumeBullet": "Implemented personal pre-push testing checklist following production incident, and began architecting role-based access control for bulk export authorization",
+    "starStory": null
+  },
+  {
+    "id": "log-017",
+    "date": "2026-03-10",
+    "transcript": "Spent the whole day reading through the auth middleware code. It's honestly pretty complex but I think I understand the pattern now. I met with Jake to ask some questions and he was really helpful, walked me through how permissions are checked and where I should add my logic. I wrote up a short design doc for my approach before writing any code which is something I'm trying to do more. Had a career fair on campus tonight and got a few interesting conversations but also felt overwhelmed comparing myself to everyone else.",
+    "task": "Studied authentication middleware architecture and wrote design document for RBAC implementation approach",
+    "skills": [
+      "System Design",
+      "Authentication",
+      "Technical Documentation",
+      "Mentorship"
+    ],
+    "impact": "Produced design document for RBAC feature that aligned with existing middleware patterns, reducing implementation risk",
+    "resumeBullet": "Authored technical design document for role-based access control feature after studying auth middleware architecture, enabling faster and safer implementation",
+    "starStory": null
+  },
+  {
+    "id": "log-018",
+    "date": "2026-03-11",
+    "transcript": "Implemented the RBAC logic today. I added an admin role check to the export middleware and wrote tests for both the allowed and denied cases. I also made sure the error messages are clear so users understand why they can't access the feature. Sarah reviewed my design doc before I started and had one suggestion which was to also log unauthorized access attempts for security auditing. I added that too. Really glad I wrote the design doc first, it made the implementation so much smoother.",
+    "task": "Implemented role-based access control for bulk export with admin checks, error messaging, and security audit logging",
+    "skills": [
+      "Authorization",
+      "Middleware",
+      "Security",
+      "Logging",
+      "Testing"
+    ],
+    "impact": "Secured bulk export feature behind admin role authorization with audit logging, improving both security and compliance posture",
+    "resumeBullet": "Implemented role-based access control for bulk export feature including admin authorization middleware, descriptive error handling, and security audit logging for unauthorized access attempts",
+    "starStory": null
+  },
+  {
+    "id": "log-019",
+    "date": "2026-03-12",
+    "transcript": "RBAC PR merged with no changes requested which felt amazing after the tooltip incident. I got assigned to help a newer intern, Priya, who just started this week. I helped her set up her dev environment and walked her through the codebase for about two hours. It was actually really helpful for me too because explaining things forced me to realize how much I've actually learned in the past month.",
+    "task": "Mentored new intern through dev environment setup and codebase orientation",
+    "skills": [
+      "Mentorship",
+      "Communication",
+      "Onboarding",
+      "Technical Explanation"
+    ],
+    "impact": "Helped new intern Priya get up to speed in a single session, replicating the onboarding support that accelerated my own ramp-up",
+    "resumeBullet": "Mentored incoming intern through full development environment setup and codebase walkthrough, reducing their onboarding ramp-up time significantly",
+    "starStory": null
+  },
+  {
+    "id": "log-020",
+    "date": "2026-03-13",
+    "transcript": "Had my 30 day check-in with Sarah today. She said I've been doing really well and specifically called out the lazy loading work and the customer call insights. She also said I should work on speaking up more in larger group meetings because I tend to go quiet. That's fair and something I've noticed about myself. She asked what I want to work on in the second half of the internship and I said I want to get more exposure to the backend and maybe work on something end to end. She seemed excited about that.",
+    "task": "Completed 30-day performance check-in, received feedback, and set goals for second half of internship",
+    "skills": [
+      "Self Reflection",
+      "Career Development",
+      "Goal Setting",
+      "Receiving Feedback"
+    ],
+    "impact": "Established clear growth goals for backend exposure and end-to-end feature ownership in second half of internship",
+    "resumeBullet": "Received positive 30-day performance review with recognition for performance optimization work and customer insights contribution; established backend development goals for internship remainder",
+    "starStory": null
+  },
+  {
+    "id": "log-021",
+    "date": "2026-03-16",
+    "transcript": "Big week ahead. I'm getting my first end to end feature: a notification system that alerts users when their scheduled export is ready. I'll own the backend job, the API endpoint, and the frontend notification bell. It's a lot but I'm really excited. Spent today mapping out all the pieces and drawing a rough architecture diagram. I showed it to Jake and he said the overall approach was solid but suggested I use a job queue instead of a cron job for reliability.",
+    "task": "Architected end-to-end notification system for scheduled exports, incorporating job queue recommendation from senior engineer",
+    "skills": [
+      "System Architecture",
+      "Backend Development",
+      "Job Queues",
+      "Full Stack Planning"
+    ],
+    "impact": "Designed scalable notification system architecture leveraging job queue pattern for improved reliability over cron-based approach",
+    "resumeBullet": "Led end-to-end architecture design for export notification system, adopting job queue pattern over cron jobs based on senior engineer guidance to improve reliability",
+    "starStory": null
+  },
+  {
+    "id": "log-022",
+    "date": "2026-03-17",
+    "transcript": "Implemented the backend job today using Bull for the job queue. It was my first time working seriously with Node.js beyond basic API routes and I had to read a lot of documentation but I got it working. The job picks up when an export completes, creates a notification record in the database, and marks it as unread. I wrote tests for the happy path and a couple of failure scenarios.",
+    "task": "Implemented backend notification job using Bull queue, including database record creation and failure scenario testing",
+    "skills": [
+      "Node.js",
+      "Bull Queue",
+      "Job Processing",
+      "Database",
+      "Backend Development"
+    ],
+    "impact": "Built reliable asynchronous notification job with tested failure handling, forming the backbone of the export notification system",
+    "resumeBullet": "Implemented asynchronous notification job using Bull queue in Node.js, handling export completion events and persisting notification records with comprehensive failure scenario test coverage",
+    "starStory": null
+  },
+  {
+    "id": "log-023",
+    "date": "2026-03-18",
+    "transcript": "Built the API endpoint for fetching user notifications today. It returns unread notifications with pagination which I've gotten a lot better at implementing. I also added a mark as read endpoint. The tricky part was making sure we only return notifications for the authenticated user and not accidentally leak other users data. I added a test specifically for that case. Security mindset is something I'm actively trying to build.",
+    "task": "Built paginated notifications API endpoints with authentication-scoped data access and security test coverage",
+    "skills": [
+      "REST API Design",
+      "Authentication",
+      "Data Security",
+      "Pagination",
+      "Testing"
+    ],
+    "impact": "Delivered secure notifications API with user-scoped data access, preventing cross-user data leakage with explicit security test coverage",
+    "resumeBullet": "Designed and implemented paginated notifications REST API with authentication-scoped queries and explicit security tests to prevent cross-user data exposure",
+    "starStory": null
+  },
+  {
+    "id": "log-024",
+    "date": "2026-03-19",
+    "transcript": "Had my final exam this morning. I think it went okay, not amazing but passing for sure. Came back to the office in the afternoon and worked on the frontend notification bell component. I used a badge to show the unread count and a dropdown that marks notifications as read when you open it. It's pretty clean and I'm happy with how it looks. Priya asked me a React question today and I actually knew the answer immediately which felt great.",
+    "task": "Built frontend notification bell component with unread badge count and auto-mark-as-read dropdown behavior",
+    "skills": [
+      "React",
+      "UI Development",
+      "Component Design",
+      "State Management"
+    ],
+    "impact": "Completed frontend notification component with intuitive read-state management, closing the final piece of the end-to-end notification feature",
+    "resumeBullet": "Built notification bell UI component in React with unread count badge and automatic mark-as-read on dropdown open, completing the frontend layer of the end-to-end notification system",
+    "starStory": null
+  },
+  {
+    "id": "log-025",
+    "date": "2026-03-20",
+    "transcript": "Opened a PR for the entire notification system today, backend job, API, and frontend all in one. It's the biggest PR I've ever submitted, like 400 lines of code. Sarah reviewed it and said it was impressive work for someone five weeks into an internship. She had some minor style comments and one suggestion to add a retry mechanism to the job for transient failures. I implemented the retry logic and updated the PR. Really proud of this one.",
+    "task": "Submitted comprehensive notification system PR encompassing full stack implementation and added retry logic for job failure resilience",
+    "skills": [
+      "Full Stack Development",
+      "Error Handling",
+      "Retry Patterns",
+      "Code Review",
+      "System Reliability"
+    ],
+    "impact": "Delivered complete end-to-end notification system in a single PR, praised by engineering manager as impressive work for the internship stage",
+    "resumeBullet": "Delivered full-stack export notification system across backend job queue, REST API, and React UI in a single 400-line PR, incorporating retry logic for transient failure resilience",
+    "starStory": {
+      "situation": "Tasked with owning a complete end-to-end feature for the first time, spanning backend job processing, API layer, and frontend UI across a stack I was still learning",
+      "task": "Independently design, implement, test, and ship the entire notification system for scheduled exports within one sprint week",
+      "action": "Created an architecture diagram upfront, implemented each layer sequentially with tests at each step, proactively incorporated a job queue pattern based on senior engineer advice, and added security-focused tests for cross-user data leakage",
+      "result": "Delivered a 400-line full-stack PR in one week that was described by the engineering manager as impressive for an intern at this stage, with only minor style comments and one reliability enhancement requested"
+    }
+  },
+  {
+    "id": "log-026",
+    "date": "2026-03-23",
+    "transcript": "Notification system PR got merged this morning. Felt like a milestone. Got assigned to look into some accessibility issues on the main dashboard today. This is new territory for me, I don't know much about accessibility. Spent the afternoon reading about WCAG guidelines and using a screen reader for the first time ever. Eye opening experience. A lot of our interactive elements don't have proper aria labels. I made a list of all the issues I found which is longer than I expected.",
+    "task": "Conducted accessibility audit of main dashboard using screen reader and WCAG guidelines, documenting all identified issues",
+    "skills": [
+      "Accessibility",
+      "WCAG",
+      "Screen Readers",
+      "Audit",
+      "ARIA"
+    ],
+    "impact": "Produced comprehensive accessibility issue list for dashboard that will guide remediation work and improve product usability for users with disabilities",
+    "resumeBullet": "Conducted WCAG accessibility audit of main dashboard using screen reader testing, documenting 12+ aria label and interactive element issues to guide remediation",
+    "starStory": null
+  },
+  {
+    "id": "log-027",
+    "date": "2026-03-24",
+    "transcript": "Started fixing the accessibility issues I found yesterday. Added aria labels to all the icon buttons, fixed the tab order on the filter bar, and made sure all form inputs have associated labels. It's detail oriented work but I find myself caring about it more than I expected. Thinking about users who rely on screen readers makes the work feel meaningful. I also wrote a short internal blog post about what I learned doing the accessibility audit. Sarah said she wants to share it with the wider engineering team.",
+    "task": "Resolved multiple dashboard accessibility issues and authored internal blog post on accessibility audit learnings",
+    "skills": [
+      "Accessibility",
+      "ARIA",
+      "HTML Semantics",
+      "Technical Writing",
+      "Empathy"
+    ],
+    "impact": "Fixed 8 accessibility issues on the dashboard and produced internal knowledge-sharing content on accessibility practices",
+    "resumeBullet": "Remediated 8+ WCAG accessibility violations on the main dashboard and authored internal engineering blog post on audit methodology, shared with the full engineering team",
+    "starStory": null
+  },
+  {
+    "id": "log-028",
+    "date": "2026-03-25",
+    "transcript": "Had a really good conversation with Carlos the other intern about our futures. He's thinking about grad school, I'm not sure what I want. I think I want to work for a couple years first but I feel guilty about that for some reason. At work I paired with Jake on a database query optimization today. He showed me how to read a query execution plan which was completely new to me. We reduced the query time on one of the reports from 3 seconds to 400 milliseconds by adding a composite index. That kind of work is so satisfying.",
+    "task": "Paired with senior engineer on database query optimization, learning execution plan analysis and composite index strategy",
+    "skills": [
+      "Database Optimization",
+      "SQL",
+      "Query Execution Plans",
+      "Indexing",
+      "Pair Programming"
+    ],
+    "impact": "Reduced critical report query execution time by 87% from 3 seconds to 400 milliseconds through composite index implementation",
+    "resumeBullet": "Collaborated with senior engineer to optimize database query performance via composite indexing, achieving 87% reduction in report generation time from 3s to 400ms",
+    "starStory": null
+  },
+  {
+    "id": "log-029",
+    "date": "2026-03-26",
+    "transcript": "Got asked to give a short demo of the notification system at the all hands meeting today. I was really nervous, like palms sweating nervous, but it went well. I demoed the whole flow, creating a scheduled export, having it complete, and the notification bell updating. People asked questions and I could answer them which felt great. My manager said she was proud of how I presented myself. I called my dad after to tell him and he actually seemed genuinely impressed which is rare.",
+    "task": "Presented notification system demo at company all-hands meeting, fielding live questions from the engineering team",
+    "skills": [
+      "Public Speaking",
+      "Technical Presentation",
+      "Demoing",
+      "Communication"
+    ],
+    "impact": "Successfully showcased end-to-end notification system to the full company, reinforcing engineering confidence in the feature before release",
+    "resumeBullet": "Presented live product demo of end-to-end notification system at company all-hands meeting, confidently addressing technical questions from engineering and product stakeholders",
+    "starStory": {
+      "situation": "Asked to demo the notification system I built to the entire company at the all-hands meeting with no prior public speaking experience in a professional setting",
+      "task": "Deliver a clear, confident technical demo that communicated the feature value to both technical and non-technical audiences",
+      "action": "Prepared a scripted walkthrough of the end-to-end user flow, anticipated likely questions and prepared answers, rehearsed the demo twice the evening before, and focused on showing user value rather than technical implementation",
+      "result": "Demo was well received with multiple questions answered confidently, and my manager publicly praised my presentation, marking a personal milestone in professional communication"
+    }
+  },
+  {
+    "id": "log-030",
+    "date": "2026-03-27",
+    "transcript": "Last day before spring break. Tied up a few loose ends, reviewed Priya's first real PR which was really solid, and updated the documentation for the notification system. I also asked Sarah if there's any chance of a return offer and she said she can't make promises but that the feedback on me has been really positive and she will advocate for me. That's about as good as I could hope for. I feel like a completely different person than the one who showed up six weeks ago not knowing what to say in standup.",
+    "task": "Wrapped up documentation, reviewed intern PR, and had return offer conversation with manager before spring break",
+    "skills": [
+      "Documentation",
+      "Code Review",
+      "Mentorship",
+      "Self Advocacy",
+      "Career Development"
+    ],
+    "impact": "Completed documentation handoff, supported junior intern growth through PR review, and received positive return offer signal from manager",
+    "resumeBullet": "Completed internship sprint with documentation updates, peer code review for junior intern, and received manager advocacy for return offer based on consistent high-impact contributions",
+    "starStory": null
+  }
 ]
