@@ -38,7 +38,7 @@ export function LogList({ logs, folderNames, onDragStart, onDragEnd, onEdit, onM
             <span className="drag-handle">⠿</span>
             <span className="log-item-title">{log.title}</span>
           </div>
-          <div className="log-item-time">{log.time}</div>
+          <div className="log-item-time">{log.date}</div>
           <button
             className="three-dot-btn"
             onClick={(e) => {
