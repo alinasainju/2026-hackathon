@@ -69,11 +69,7 @@ function aggregateSkills(logs: LogItem[]) {
 }
 
 function generateBullets(logs: LogItem[]) {
-  return logs.slice(0, 4).map((l) => {
-    const skill = (l.skills || ["skills"])[0];
-    const impact = l.impact || "improved outcomes";
-    return `Applied ${skill} to ${l.title.toLowerCase()} — ${impact}`;
-  });
+  return logs.slice(0, 4).map((l) => l.resumeBullet || l.impact || l.title);
 }
 
 function generateSummary(logs: LogItem[], skills: { name: string; count: number }[]) {
