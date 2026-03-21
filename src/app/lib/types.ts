@@ -10,6 +10,7 @@ export interface LogEntry {
   id: string;
   date: string;
   transcript: string;
+  rawTranscript?: string;
   task: string;
   skills: string[];
   impact: string;

@@ -19,7 +19,7 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
-    const { transcript } = await req.json();
+    const { transcript, rawTranscript } = await req.json();
 
     if (!transcript || transcript.trim() === "") {
       return NextResponse.json({ error: "Transcript is required" }, { status: 400 });
@@ -46,6 +46,7 @@ export async function POST(req: NextRequest) {
       id: crypto.randomUUID(),
       date: new Date().toISOString().split("T")[0], // YYYY-MM-DD
       transcript,
+      rawTranscript: rawTranscript ?? transcript,
       task: extracted.task,
       skills: extracted.skills,
       impact: extracted.impact,

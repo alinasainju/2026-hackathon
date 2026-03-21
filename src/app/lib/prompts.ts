@@ -11,6 +11,7 @@ Transcript: "${transcript}"
 
 Respond ONLY with a valid JSON object in this exact format (no markdown, no explanation):
 {
+  "title": "3-5 keyword title based on the transcript",
   "task": "one sentence summary of what they worked on",
   "skills": ["skill1", "skill2", "skill3"],
   "impact": "one sentence describing the impact or outcome",
