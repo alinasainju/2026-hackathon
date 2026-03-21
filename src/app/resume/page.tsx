@@ -46,6 +46,7 @@ export default function ResumePage() {
             weekLabel={w.label || `Week ${weeks.length - idx}`}
             dateRange={w.range}
             logs={w.logs}
+            showBullets={w.isCompleteWeek}
             hasStar={detectStar(w.logs)}
             showStar={weekStarState[w.key] ?? detectStar(w.logs)}
             onToggleStar={toggleStarPanel}
@@ -80,6 +81,7 @@ function groupByWeekAndFolder(logs: ReturnType<typeof useLogs>["allLogs"], folde
       label: val.folderLabel,
       range: `${fmtShort(val.start)} - ${fmtShort(val.end)}, ${val.end.getFullYear()}`,
       logs: val.logs,
+      isCompleteWeek: isCompleteWeek(val.end),
     }));
 }
 
@@ -87,4 +89,11 @@ const fmtShort = (d: Date) => d.toLocaleDateString("en-US", { month: "short", da
 
 function detectStar(logs: ReturnType<typeof useLogs>["allLogs"]) {
   return logs.some((log) => !!log.starStory);
+}
+
+function isCompleteWeek(weekEnd: Date) {
+  const now = new Date();
+  const endOfWeek = new Date(weekEnd);
+  endOfWeek.setHours(23, 59, 59, 999);
+  return now.getTime() >= endOfWeek.getTime();
 }

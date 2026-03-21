@@ -1,12 +1,14 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import Nav from "@/components/Nav";
 import TasksFolderView from "@/components/TasksFolderView";
 import TasksListView from "@/components/TasksListView";
 import { useLogs, FolderDef } from "@/context/LogsContext";
 
 export default function TasksPage() {
+  const searchParams = useSearchParams();
   const { folders, allLogs } = useLogs();
   const [view, setView] = useState<"folder" | "list">("folder");
   const [activeFolder, setActiveFolder] = useState<FolderDef | null>(null);
@@ -16,13 +18,24 @@ export default function TasksPage() {
     return [...allLogs].reverse();
   }, [allLogs]);
 
+  useEffect(() => {
+    const folderKey = searchParams.get("folder");
+    if (!folderKey) return;
+
+    const folder = folders.find((item) => item.key === folderKey);
+    if (!folder) return;
+
+    setActiveFolder(folder);
+    setView("list");
+  }, [folders, searchParams]);
+
   return (
     <div className="page active">
       <Nav />
       <div className="tasks-page">
         <div className="tasks-header">
           <div className="tasks-header-left">
-            <div className="tasks-title">Tasks</div>
+            <div className="tasks-title">Logs</div>
           </div>
           <div className="tasks-header-right">
             <div className="view-toggle">

@@ -1,21 +1,59 @@
 [
   {
-    "id": "fa96bf00-564d-4ca0-a6a6-76950e685972",
+    "id": "084164b2-62db-4d6e-ae6c-b0b0b785f062",
     "date": "2026-03-21",
-    "title": "New Log",
-    "time": "01:08 PM - 01:08 PM",
-    "transcript": "hi",
-    "rawTranscript": "hi",
-    "task": "hi",
+    "title": "Change Anything",
+    "time": "01:22 PM - 01:22 PM",
+    "transcript": "change  anything",
+    "rawTranscript": "change  anything",
+    "task": "Captured work related to change anything.",
     "skills": [
       "Problem Solving"
     ],
-    "impact": "hi",
-    "resumeBullet": "Documented new log and captured impact: hi",
+    "impact": "Clarified the work completed and captured a usable takeaway for future resume and interview use.",
+    "resumeBullet": "Documented change anything and captured impact: Clarified the work completed and captured a usable takeaway for future resume and interview use.",
+    "starStory": null,
+    "folder": "",
+    "tag": "",
+    "dot": "",
+    "source": "voice"
+  },
+  {
+    "id": "f3540ba1-4bf9-42ee-ab3b-3ee246239752",
+    "date": "2026-03-21",
+    "title": "Learned Program Python Also",
+    "time": "01:19 PM - 01:19 PM",
+    "transcript": "I learned to program in python and also learned about PyTorch while learning binary regression",
+    "rawTranscript": "I learned to program in python and also learned about PyTorch while learning binary regression",
+    "task": "I learned to program in python and also learned about PyTorch while learning binary regression",
+    "skills": [
+      "Problem Solving"
+    ],
+    "impact": "I learned to program in python and also learned about PyTorch while learning binary regression",
+    "resumeBullet": "Documented learned program python also and captured impact: I learned to program in python and also learned about PyTorch while learning binary regression",
     "starStory": null,
     "folder": "",
     "tag": "",
     "dot": "",
     "source": "text"
+  },
+  {
+    "id": "95560c8a-078b-4614-9eb3-bdf40472fb50",
+    "date": "2026-03-20",
+    "title": "Learned About Api Keys",
+    "time": "01:11 PM - 01:11 PM",
+    "transcript": "I learned about API keys and how to connect it to  back",
+    "rawTranscript": "I learned about API keys and how to connect it to  back",
+    "task": "dnIlearned about API keys and how to connect it to  backen",
+    "skills": [
+      "API Design"
+    ],
+    "impact": "I learned about API keys and how to connect it to  back",
+    "resumeBullet": "Documented learned about api keys and captured impact: I learned about API keys and how to connect it to  back",
+    "starStory": null,
+    "folder": "",
+    "tag": "",
+    "dot": "",
+    "source": "voice"
   }
 ]
