@@ -1,3 +1,164 @@
 [
-
+  {
+    "id": "cf31080a-33b0-4618-99ab-237affacc85e",
+    "date": "2026-03-21",
+    "title": "Learning Documentation Opened Entire Notification",
+    "time": "05:09 PM - 05:09 PM",
+    "transcript": "I opened the pr for the entire notification system today I did a back-end job API in the front end all in one it was the biggest PR I've ever submitted like 400 lines of code my manager Sarah reviewed it and she said it was an impressive work for someone who only had  5 weeks",
+    "rawTranscript": "I opened the pr for the entire notification system today I did a back-end job API in the front end all in one it was the biggest PR I've ever submitted like 400 lines of code my manager Sarah reviewed it and she said it was an impressive work for someone who only had  5 weeks",
+    "task": "Learning and documentation related to i opened the pr for the entire notification system today I did a back-end job API in the front end all in one it was the biggest PR I've ever submitted like 400 lines of code my manager Sarah reviewed it and she said it was an impressive work for someone who only had 5 weeks.",
+    "skills": [
+      "API Design",
+      "Code Review"
+    ],
+    "impact": "I opened the pr for the entire notification system today I did a back-end job API in the front end all in one it was the biggest PR I've ever submitted like 400 lines of code my manager Sarah reviewed it and she said it was an impressive work for someone who only had  5 weeks.",
+    "resumeBullet": "Delivered learning documentation opened entire notification and drove the outcome that i opened the pr for the entire notification system today I did a back-end job API in the front end all in one it was the biggest PR I've ever submitted like 400 lines of code my manager Sarah reviewed it and she said it was an impressive work for someone who only had  5 weeks.",
+    "starStory": {
+      "situation": "You were working through a specific challenge described in the log.",
+      "task": "I opened the pr for the entire notification system today I did a back-end job API in the front end a...",
+      "action": "You documented the steps you took to address the problem and move the work forward.",
+      "result": "I opened the pr for the entire notification system today I did a back-end job API in the front end all in one it was the biggest PR I've ever submitted like 400 lines of code my manager Sarah reviewed it and she said it was an impressive work for someone who only had  5 weeks."
+    },
+    "folder": "",
+    "tag": "",
+    "dot": "",
+    "source": "voice"
+  },
+  {
+    "id": "367e8dd7-2e24-4aaa-a0e9-5b9af19d57ac",
+    "date": "2026-03-21",
+    "title": "Learning Documentation Say Opened System",
+    "time": "03:46 PM - 03:46 PM",
+    "transcript": "and say  I opened up PR system today for the entire notification system I did backend job API and frontend all-in-one it was the biggest PR I've ever submitted it was like 400 lines of code Sarah my manager reviewed it and she said it was an impressive work I had some minor style comment issues so I submitted it again and I  updated the pr",
+    "rawTranscript": "and say  I opened up PR system today for the entire notification system I did backend job API and frontend all-in-one it was the biggest PR I've ever submitted it was like 400 lines of code Sarah my manager reviewed it and she said it was an impressive work I had some minor style comment issues so I submitted it again and I  updated the pr",
+    "task": "Learning and documentation related to and say I opened up PR system today for the entire notification system I did backend job API and frontend all-in-one it was the biggest PR I've ever submitted it was like 400 lines of code Sarah my manager reviewed it and she said it was an impressive work I had some minor style comment issues so I submitted it again and I updated the pr.",
+    "skills": [
+      "API Design",
+      "Code Review"
+    ],
+    "impact": "And say  I opened up PR system today for the entire notification system I did backend job API and frontend all-in-one it was the biggest PR I've ever submitted it was like 400 lines of code Sarah my manager reviewed it and she said it was an impressive work I had some minor style comment issues so I submitted it again and I  updated the pr.",
+    "resumeBullet": "Delivered learning documentation say opened system and drove the outcome that and say  I opened up PR system today for the entire notification system I did backend job API and frontend all-in-one it was the biggest PR I've ever submitted it was like 400 lines of code Sarah my manager reviewed it and she said it was an impressive work I had some minor style comment issues so I submitted it again and I  updated the pr.",
+    "starStory": {
+      "situation": "You were working through a specific challenge described in the log.",
+      "task": "and say  I opened up PR system today for the entire notification system I did backend job API and fr...",
+      "action": "You documented the steps you took to address the problem and move the work forward.",
+      "result": "And say  I opened up PR system today for the entire notification system I did backend job API and frontend all-in-one it was the biggest PR I've ever submitted it was like 400 lines of code Sarah my manager reviewed it and she said it was an impressive work I had some minor style comment issues so I submitted it again and I  updated the pr."
+    },
+    "folder": "",
+    "tag": "",
+    "dot": "",
+    "source": "voice"
+  },
+  {
+    "id": "log-010",
+    "date": "2026-03-17",
+    "title": "75% Load Time Reduction Shipped",
+    "time": null,
+    "transcript": "Finished and merged the lazy loading implementation. The reports page load time went from like 8 seconds to under 2 seconds for the large dataset test cases which is a massive improvement. Sarah put it in the weekly wins channel and tagged me which was awesome. I also got asked to document the custom hook I wrote so other engineers can use it. Writing documentation is something I used to think was boring but I'm starting to see why it matters.",
+    "rawTranscript": null,
+    "task": "Completed lazy loading implementation and authored developer documentation for the custom hook",
+    "skills": [
+      "React",
+      "Performance Optimization",
+      "Technical Writing",
+      "Documentation"
+    ],
+    "impact": "Reduced reports page load time by 75 percent, from 8 seconds to under 2 seconds for large dataset users",
+    "resumeBullet": "Reduced reports page load time by 75% through lazy loading implementation and authored reusable custom React hook documentation adopted by the broader engineering team",
+    "starStory": {
+      "situation": "The reports page was loading in over 8 seconds for customers with large datasets, causing frustration and impacting product perception",
+      "task": "Design and implement a performant lazy loading solution without breaking the existing tightly coupled component architecture",
+      "action": "Refactored the component data fetching logic into a custom React hook that supported incremental loading, then implemented lazy loading with intersection observers to trigger fetches on scroll",
+      "result": "Load time dropped from 8 seconds to under 2 seconds, a 75% improvement, which was highlighted in the weekly team wins channel by the engineering manager"
+    },
+    "source": "text"
+  },
+  {
+    "id": "log-014",
+    "date": "2026-03-18",
+    "title": "Customer Insights Drive Roadmap Addition",
+    "time": null,
+    "transcript": "Presented my customer call notes in the team meeting today. It went well and there was a good discussion about the scheduled exports idea. The product manager said she wants to add it to the roadmap for next quarter. That felt really good knowing something I noticed directly influenced the product direction. Spent the rest of the day fixing a few small UI bugs, some misaligned buttons and a broken tooltip.",
+    "rawTranscript": null,
+    "task": "Presented customer call insights to team and fixed multiple UI bugs including alignment and tooltip issues",
+    "skills": [
+      "Presentation Skills",
+      "Product Thinking",
+      "CSS",
+      "UI Debugging"
+    ],
+    "impact": "Customer insight presentation directly influenced product roadmap, adding scheduled exports as a Q2 feature",
+    "resumeBullet": "Presented customer discovery insights that influenced product roadmap, securing scheduled export automation as a Q2 feature, while also resolving multiple UI consistency bugs",
+    "starStory": {
+      "situation": "During a customer call observation, I noticed repeated customer frustration about manually running the same exports every week",
+      "task": "Document and present this insight to the team in a way that could drive product prioritization",
+      "action": "Took structured notes during the call, synthesized the feedback into a clear product gap analysis, and presented it in the weekly team meeting with a concrete feature proposal",
+      "result": "The product manager added scheduled export automation to the Q2 roadmap, directly connecting my observation to a planned product improvement"
+    },
+    "source": "text"
+  },
+  {
+    "id": "log-018",
+    "date": "2026-03-19",
+    "title": "RBAC Implemented with Audit Logging",
+    "time": null,
+    "transcript": "Implemented the RBAC logic today. I added an admin role check to the export middleware and wrote tests for both the allowed and denied cases. I also made sure the error messages are clear so users understand why they can't access the feature. Sarah reviewed my design doc before I started and had one suggestion which was to also log unauthorized access attempts for security auditing. I added that too. Really glad I wrote the design doc first, it made the implementation so much smoother.",
+    "rawTranscript": null,
+    "task": "Implemented role-based access control for bulk export with admin checks, error messaging, and security audit logging",
+    "skills": [
+      "Authorization",
+      "Middleware",
+      "Security",
+      "Logging",
+      "Testing"
+    ],
+    "impact": "Secured bulk export feature behind admin role authorization with audit logging, improving both security and compliance posture",
+    "resumeBullet": "Implemented role-based access control for bulk export feature including admin authorization middleware, descriptive error handling, and security audit logging for unauthorized access attempts",
+    "starStory": null,
+    "source": "text"
+  },
+  {
+    "id": "log-022",
+    "date": "2026-03-20",
+    "title": "Backend Notification Job Built",
+    "time": null,
+    "transcript": "Implemented the backend job today using Bull for the job queue. It was my first time working seriously with Node.js beyond basic API routes and I had to read a lot of documentation but I got it working. The job picks up when an export completes, creates a notification record in the database, and marks it as unread. I wrote tests for the happy path and a couple of failure scenarios.",
+    "rawTranscript": null,
+    "task": "Implemented backend notification job using Bull queue, including database record creation and failure scenario testing",
+    "skills": [
+      "Node.js",
+      "Bull Queue",
+      "Job Processing",
+      "Database",
+      "Backend Development"
+    ],
+    "impact": "Built reliable asynchronous notification job with tested failure handling, forming the backbone of the export notification system",
+    "resumeBullet": "Implemented asynchronous notification job using Bull queue in Node.js, handling export completion events and persisting notification records with comprehensive failure scenario test coverage",
+    "starStory": null,
+    "source": "text"
+  },
+  {
+    "id": "log-029",
+    "date": "2026-03-22",
+    "title": "All-Hands Demo of Notification System",
+    "time": null,
+    "transcript": "Got asked to give a short demo of the notification system at the all hands meeting today. I was really nervous, like palms sweating nervous, but it went well. I demoed the whole flow, creating a scheduled export, having it complete, and the notification bell updating. People asked questions and I could answer them which felt great. My manager said she was proud of how I presented myself. I called my dad after to tell him and he actually seemed genuinely impressed which is rare.",
+    "rawTranscript": null,
+    "task": "Presented notification system demo at company all-hands meeting, fielding live questions from the engineering team",
+    "skills": [
+      "Public Speaking",
+      "Technical Presentation",
+      "Demoing",
+      "Communication"
+    ],
+    "impact": "Successfully showcased end-to-end notification system to the full company, reinforcing engineering confidence in the feature before release",
+    "resumeBullet": "Presented live product demo of end-to-end notification system at company all-hands meeting, confidently addressing technical questions from engineering and product stakeholders",
+    "starStory": {
+      "situation": "Asked to demo the notification system I built to the entire company at the all-hands meeting with no prior public speaking experience in a professional setting",
+      "task": "Deliver a clear, confident technical demo that communicated the feature value to both technical and non-technical audiences",
+      "action": "Prepared a scripted walkthrough of the end-to-end user flow, anticipated likely questions and prepared answers, rehearsed the demo twice the evening before, and focused on showing user value rather than technical implementation",
+      "result": "Demo was well received with multiple questions answered confidently, and my manager publicly praised my presentation, marking a personal milestone in professional communication"
+    },
+    "source": "text"
+  }
 ]

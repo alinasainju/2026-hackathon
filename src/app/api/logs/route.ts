@@ -98,10 +98,10 @@ async function extractWithClaude(transcript: string, source: "voice" | "text") {
 }
 
 function extractFallback(transcript: string) {
-  const title = keywordTitle(transcript);
-  const task = summarizeTask(transcript, title);
+  const task = summarizeTask(transcript);
+  const title = keywordTitle(task !== "Captured work from the log." ? task : transcript);
   const skills = inferSkills(transcript);
-  const impact = inferImpact(transcript);
+  const impact = inferImpact(transcript, task);
   const story = inferStarStory(transcript);
 
   return {
@@ -119,6 +119,8 @@ function keywordTitle(text: string) {
     "the", "a", "an", "and", "or", "but", "in", "on", "at", "to",
     "for", "of", "with", "how", "why", "what", "that", "this", "is", "are",
     "was", "were", "i", "my", "we", "our", "from", "by", "it", "as",
+    "worked", "working", "learned", "documented", "captured", "related",
+    "what", "did", "primary", "task", "summary",
   ]);
 
   const words = text
@@ -128,7 +130,7 @@ function keywordTitle(text: string) {
     .filter((word) => word.length > 2 && !stop.has(word));
 
   return [...new Set(words)]
-    .slice(0, 4)
+    .slice(0, 5)
     .map((word) => word[0].toUpperCase() + word.slice(1))
     .join(" ") || "New Log";
 }
@@ -147,19 +149,37 @@ function inferSkills(transcript: string) {
   return matches.length > 0 ? matches : ["Problem Solving"];
 }
 
-function inferImpact(transcript: string) {
-  const sentences = transcript.split(/[.!?]/).map((part) => part.trim()).filter(Boolean);
-  const closing = sentences.at(-1) || "";
+function inferImpact(transcript: string, task: string) {
+  const sentences = transcript
+    .split(/[.!?]/)
+    .map((part) => part.trim())
+    .filter(Boolean);
 
-  if (closing.length >= 20) {
-    return closing[0].toUpperCase() + closing.slice(1);
+  const outcomeVerbs =
+    /approved|merged|fixed|reduced|improved|sped up|resolved|completed|launched|shipped|identified|restored|documented|presented|implemented|secured|influenced|added|tested|refactored|wrote/;
+  const weakPersonal =
+    /felt|nervous|awesome|glad|happy|impressed|called my|my dad|palms sweating|humbling|helpful|good|great/;
+
+  const best = sentences
+    .map((sentence) => {
+      let score = 0;
+      if (outcomeVerbs.test(sentence)) score += 3;
+      if (/\b(team|manager|customer|users|production|roadmap|pr|feature|page|system|export|bug|tests?)\b/i.test(sentence)) score += 2;
+      if (/\b(by end of day|under \d|%|same day|next quarter|q[1-4]|weekly wins)\b/i.test(sentence)) score += 1;
+      if (weakPersonal.test(sentence)) score -= 2;
+      return { sentence, score };
+    })
+    .sort((a, b) => b.score - a.score)[0];
+
+  if (best && best.score > 0) {
+    return ensureSentence(best.sentence);
   }
 
-  if (/approved|fixed|reduced|improved|sped up|resolved|completed|launched|shipped|identified/i.test(transcript)) {
-    return "Improved the quality or clarity of the work and captured a concrete outcome.";
+  if (/approved|merged|fixed|reduced|improved|sped up|resolved|completed|launched|shipped|identified/i.test(transcript)) {
+    return `Created a concrete outcome related to ${stripPeriod(task).toLowerCase()}.`;
   }
 
-  return "Clarified the work completed and captured a usable takeaway for future resume and interview use.";
+  return `Made progress on ${stripPeriod(task).toLowerCase()} and documented the result for future use.`;
 }
 
 function inferStarStory(transcript: string): StarStory | null {
@@ -174,10 +194,10 @@ function inferStarStory(transcript: string): StarStory | null {
 }
 
 function buildResumeBullet(title: string, impact: string) {
-  return `Documented ${title.toLowerCase()} and captured impact: ${impact}`;
+  return `Delivered ${title.toLowerCase()} and drove the outcome that ${stripPeriod(impact).charAt(0).toLowerCase()}${stripPeriod(impact).slice(1)}.`;
 }
 
-function summarizeTask(transcript: string, title: string) {
+function summarizeTask(transcript: string) {
   const cleaned = transcript
     .replace(/\s+/g, " ")
     .replace(/^(so|today|basically|actually|like)\s+/i, "")
@@ -187,12 +207,35 @@ function summarizeTask(transcript: string, title: string) {
   const normalized = firstSentence.charAt(0).toLowerCase() + firstSentence.slice(1);
 
   if (/learned|understood|studied|reviewed|practiced|explored/i.test(cleaned)) {
-    return `Learned and documented ${normalized}`.replace(/\s+/g, " ");
+    return ensureSentence(`Learning and documentation related to ${normalized}`.replace(/\s+/g, " "));
   }
 
   if (/worked on|built|created|implemented|designed|debugged|fixed|wrote|reviewed/i.test(cleaned)) {
-    return `Worked on ${normalized}`.replace(/\s+/g, " ");
+    return ensureSentence(
+      normalized
+        .replace(/^worked on\s+/i, "")
+        .replace(/^implemented\s+/i, "Implementation of ")
+        .replace(/^built\s+/i, "Development of ")
+        .replace(/^created\s+/i, "Creation of ")
+        .replace(/^designed\s+/i, "Design of ")
+        .replace(/^debugged\s+/i, "Debugging of ")
+        .replace(/^fixed\s+/i, "Fix for ")
+        .replace(/^wrote\s+/i, "Writing of ")
+        .replace(/^reviewed\s+/i, "Review of ")
+        .replace(/\s+/g, " ")
+    );
   }
 
-  return `Captured work related to ${title.toLowerCase()}.`;
+  return "Captured work from the log.";
+}
+
+function ensureSentence(text: string) {
+  const trimmed = text.trim();
+  if (!trimmed) return "";
+  const normalized = trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
+  return /[.!?]$/.test(normalized) ? normalized : `${normalized}.`;
+}
+
+function stripPeriod(text: string) {
+  return text.replace(/[.!?]+$/, "");
 }

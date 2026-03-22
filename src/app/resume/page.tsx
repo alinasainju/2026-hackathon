@@ -81,7 +81,7 @@ function groupByWeekAndFolder(logs: ReturnType<typeof useLogs>["allLogs"], folde
       label: val.folderLabel,
       range: `${fmtShort(val.start)} - ${fmtShort(val.end)}, ${val.end.getFullYear()}`,
       logs: val.logs,
-      isCompleteWeek: isCompleteWeek(val.end),
+      isCompleteWeek: hasWeekWorthOfLogs(val.logs, val.end),
     }));
 }
 
@@ -91,7 +91,10 @@ function detectStar(logs: ReturnType<typeof useLogs>["allLogs"]) {
   return logs.some((log) => !!log.starStory);
 }
 
-function isCompleteWeek(weekEnd: Date) {
+function hasWeekWorthOfLogs(logs: ReturnType<typeof useLogs>["allLogs"], weekEnd: Date) {
+  const uniqueDays = new Set(logs.map((log) => log.date)).size;
+  if (uniqueDays >= 5) return true;
+
   const now = new Date();
   const endOfWeek = new Date(weekEnd);
   endOfWeek.setHours(23, 59, 59, 999);
